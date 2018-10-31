@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>产品基本信息</title>
+		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/customer/guarantee.css" />
+		<style type="text/css">
+			.custom_list td{
+				border:none!important;			
+			}
+			.width_part{
+				width: 80%!important;
+			}
+			.custom_list tr{
+				height: 60px;
+			}
+			.modal tr{
+				height: 34px;
+			}
+			.modal th{
+				text-align: center;
+			}
+			.custom_list tr td{
+				line-height: 34px!important;
+			}
+			.custom_list textarea{
+				resize: none;
+			}
+			.width_left{
+				width: 40%!important;
+				float: left!important;
+			}
+			.width_more{
+				width: 60%!important;
+			}
+			.position_re{
+				position: relative!important;
+			}
+			.position_ab{
+				position: absolute!important;
+				right: 24%!important;
+				top: 18px!important;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content" ng-app="">
+			<div class="headCom"></div>
+			<div ng-include="'../head.html'"></div>
+			<div class="main_body">
+				<div class="place_set">
+					<div class="place">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+						产品信息
+					</div>
+				</div>
+				<div class="custom_main">
+					<div class="main_title">
+						<div class="title left">
+							产品信息
+						</div>
+						<div class="btn_group">
+							<button type="button" class="btn btn-default">提交</button>
+						</div>
+					</div>
+					<div class="custom_list" >
+						<div class="guarantee_money">
+							<div class="guarantee_title">产品信息</div>
+							<div class="row mg_t">
+								<table class="table">
+									<tr>
+										<td class="text_right">产品编号 </td>
+										<td><input type="text" class="form-control width_part" /></td>
+										<td class="text_right">产品名称 </td>
+										<td><input type="text" class="form-control width_part" /></td>
+										<td class="text_right">产品规格 </td>
+										<td><input type="text" class="form-control width_part" /></td>
+									</tr>
+									<tr>
+										<td class="text_right">销售单位 </td>
+										<td>
+											<select class="form-control width_part">
+												<option value="01">箱</option>
+												<option value="02">打</option>
+											</select>
+										</td>
+										<td class="text_right">品牌 </td>
+										<td>
+											<select class="form-control width_part">
+												<option value="01">--请选择品牌信息--</option>
+											</select>
+										</td>
+										<td class="text_right">产品转化系数 </td>
+										<td><input type="text" class="form-control width_part" /></td>
+										<!--
+										<td class="text_right">客户服务组 </td>
+										<td class="position_re">
+											<input type="text" class="form-control width_part" />
+											<span data-toggle="modal" data-target="#myModal_person" class="position_ab glyphicon glyphicon-th"></span>
+										</td>
+										<td class="text_right"></td>
+										<td>
+											<input type="checkbox" id="inlineCheckbox1" value="option1"> 潜在客户&nbsp;&nbsp;&nbsp;
+											<input type="checkbox" id="cancel" value="1"> 取消客户
+										</td>-->
+									</tr>
+									<tr>
+										<td class="text_right">有效起始日 </td>
+										<td><input type="date" class="form-control width_part" /></td>
+										<td class="text_right">有效终止日 </td>
+										<td><input type="date" class="form-control width_part" /></td>
+										<td class="text_right">产品线 </td>
+										<td class="position_re">
+											<input type="text" class="form-control width_part" />
+											<span data-toggle="modal" data-target="#myModal" class="position_ab glyphicon glyphicon-th"></span>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>
+											<input type="checkbox" value="1"> 模型产品
+										</td>
+										<td class="text_right">产品模型名称 </td>
+										<td>
+											<select class="form-control width_part">
+												<option value="01">--请选择产品模型--</option>
+											</select>
+										</td>
+										<td class="text_right">同类产品 </td>
+										<td class="position_re">
+											<input type="text" class="form-control width_part" />
+											<span data-toggle="modal" data-target="#myModal_person" class="position_ab glyphicon glyphicon-th"></span>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>
+											<input type="checkbox" id="inlineCheckbox1" value="option1"> 销售产品&nbsp;&nbsp;&nbsp;
+											<input type="checkbox" id="cancel" value="1"> 服务产品
+										</td>
+										<td class="text_right">组织 </td>
+										<td>
+											<select class="form-control width_part">
+												<option value="01">--请选择--</option>
+											</select>
+										</td>
+										<td class="text_right">生产厂商 </td>
+										<td>
+											<select class="form-control width_part">
+												<option value="01">--请选择--</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td class="text_right">生产厂商类型 </td>
+										<td>
+											<select class="form-control width_part">
+												<option value="01">--请选择--</option>
+											</select>
+										</td>
+										<td class="text_right">生产厂商网站 </td>
+										<td class="position_re">
+											<input type="text" class="form-control width_part" />
+										</td>
+										<td class="text_right">外部产品编号 </td>
+										<td class="position_re">
+											<input type="text" class="form-control width_part" />
+										</td>
+									</tr>
+									<tr>
+										<td class="text_right">其他编号 </td>
+										<td class="position_re">
+											<input type="text" class="form-control width_part" />
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							产品线信息
+						</h4>
+					</div>
+					<div class="modal-body">
+						<table class="table table-bordered text-center">
+							<thead>
+								<tr>
+									<th>产品线</th>
+									<th>产品线描述</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>00100</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary">
+							提交更改
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div>
+		
+		<div class="modal fade" id="myModal_person" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							同类产品
+						</h4>
+					</div>
+					<div class="modal-body">
+						<table class="table table-bordered text-center">
+							<thead>
+								<tr>
+									<th>同类产品</th>
+									<th>产品号</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary">
+							提交更改
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>	
+	<script src="../js/angular.min.js"></script>
+	<script type="text/javascript" src="../js/fileinput.js"></script>
+</html>

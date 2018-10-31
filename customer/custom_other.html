@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>客户购买其他产品/服务信息</title>
+		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/customer/holder.css" />
+		<style type="text/css">
+			.mg_t{
+				margin-top: 20px;
+			}
+			.mg_tt{
+				margin-top: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content" ng-app="">
+			<div class="headCom"></div>
+			<div ng-include="'../head.html'"></div>
+			<div class="main_body">
+				<div class="place_set">
+					<div class="place">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+						其他购买
+					</div>
+				</div>
+				<div class="custom_main">
+					<div class="main_title">
+						<div class="title left">客户购买其他产品/服务信息</div>
+						<div class="btn_group">
+							<button type="button" class="btn btn-primary">添加</button>
+							<button type="button" class="btn btn-info">修改</button>
+						</div>
+					</div>
+					<div class="custom_list" >
+						<div class="title_hide"></div>
+						<div class="list_table col-sm-6">
+							<table class="table table-bordered table-striped text-center">
+							  	<thead>
+							  		<tr>
+							  			<th>产品名称</th>	
+							  			<th>提供者类型</th>	
+								  		<th>提供者</th>	
+								  		<th>产品类型</th>	
+								  		<th>销售价格</th>	
+								  		<th>满意度</th>	
+							  		</tr>
+							  	</thead>
+							  	<tbody>
+							  		<tr>
+							  			<td></td>
+							  			<td></td>
+							  			<td></td>
+							  			<td></td>
+							  			<td></td>
+							  			<td></td>
+							  		</tr>
+							  		<tr>
+							  			<td></td>
+							  			<td></td>
+							  			<td></td>
+							  			<td></td>
+							  			<td></td>
+							  			<td></td>
+							  		</tr>
+							  	</tbody>
+							</table>
+						</div>
+						<div class="cus_container col-sm-6">
+							<div class="detail_title">
+								客户购买其它公司产品/服务 
+							</div>
+							<div class="width_full mg_tt">
+								<div class="row">
+									<div class="col-sm-2 mg_t text_right">提供者类型：</div>
+									<div class="col-sm-4 mg_t">
+										<select class="form-control">
+											<option value="01">直接竞争者</option>
+											<option value="02">间接竞争者</option>
+										</select>
+									</div>
+									<div class="col-sm-2 mg_t text_right ">满意度：</div>
+									<div class="col-sm-4 mg_t">
+										<select class="form-control">
+											<option value="01">非常高</option>
+											<option value="02">高</option>
+											<option value="03">满意</option>
+											<option value="04">刚刚好</option>
+											<option value="05">低</option>
+											<option value="06">非常低</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-2 mg_t text_right ">产品名称：</div>
+									<div class="col-sm-4 mg_t"><input type="text" class="form-control" /></div>
+									<div class="col-sm-2 mg_t text_right">销售价格：</div>
+									<div class="col-sm-4 mg_t"><input type="text" class="form-control" /></div>
+								</div>
+								<div class="row">
+									<div class="col-sm-2 mg_t text_right">提供者：</div>
+									<div class="col-sm-4 mg_t"><input type="text" class="form-control" /></div>
+									<div class="col-sm-2 mg_t text_right">产品类别：</div>
+									<div class="col-sm-4 mg_t"><input type="text" class="form-control" /></div>
+								</div>
+								<div class="row">
+									<div class="col-sm-2 mg_t text_right">代理人：</div>
+									<div class="col-sm-4 mg_t"><input type="text" class="form-control" /></div>
+									<div class="col-sm-2 mg_t text_right">何时开始：</div>
+									<div class="col-sm-4 mg_t"><input type="text" class="form-control" /></div>
+								</div>
+								<div class="row">
+									<div class="col-sm-2 mg_t text_right">系列号：</div>
+									<div class="col-sm-4 mg_t"><input type="text" class="form-control" /></div>
+								</div>
+								<div class="row">
+									<div class="col-sm-2 mg_t text_right">备注：</div>
+									<div class="col-sm-10 mg_t">
+										<textarea class="form-control" rows="7"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>	
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</html>

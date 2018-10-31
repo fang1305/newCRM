@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>产品构造条件</title>
+		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/customer/guarantee.css" />
+		<style type="text/css">
+			.custom_list textarea{
+				resize: none;
+			}
+			.guarantee_money .text_right{
+				padding: 0 17px;
+			}
+			.fl_l{
+				float: left;
+			}
+			.line_title{
+				width: 120px!important;
+			}
+			.line_detail{
+				width: 290px!important;
+			}
+			.line_content{
+				width: 745px;
+			}
+			.line_add{
+				width: 390px;
+			}
+			.add_part{
+				width: 48%!important;
+				margin: 8px 1% 5px;
+			}
+			.add_main{
+				height: 100px;border: 1px solid #eee;padding: 0 10px;
+			}
+			.choose{
+				width: 25%!important;
+			}
+			.part_top{
+				margin-top: 15px;
+			}
+			.con{
+				padding: 10px!important;
+			}
+			.con_left{
+				border: 1px solid #ddd;height: auto;
+			}
+			.con_top{
+				margin-top: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content" ng-app="">
+			<div class="headCom"></div>
+			<div ng-include="'../head.html'"></div>
+			<div class="main_body">
+				<div class="place_set">
+					<div class="place">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+						构造条件
+					</div>
+				</div>
+				<div class="custom_main">
+					<div class="main_title">
+						<div class="title left">
+							产品构造条件
+						</div>
+					</div>
+					<div class="custom_list" >
+						<form method="post">
+							<div class="guarantee_money">
+								<div class="guarantee_title">产品构造条件</div>
+								<div class="row mg_t">
+									产品构造条件表达式
+								</div>
+								<textarea rows="4" class="width_full con" readonly="true" placeholder="系统自动生成此表达式"></textarea>
+								<div class="row mg_t">
+									编辑产品构造条件
+								</div>
+								<div class="row con_top">
+									<div class="col-sm-4 con_left con">
+										<div class="add_part fl_l">
+											项目名称
+											<select class="form-control fl_l">
+												<option value="01"></option>
+											</select>
+										</div>
+										<div class="add_part fl_l"> 
+											产品构造特性
+											<select class="form-control fl_l">
+												<option value="01"></option>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-1 con">
+										操作符
+										<select class="form-control width_part">
+											<option value="01"><</option>
+											<option value="02">></option>
+											<option value="03">=</option>
+											<option value="04"><></option>
+											<option value="05"><=</option>
+											<option value="06">>=</option>
+										</select>
+									</div>
+									<div class="col-sm-7 con con_left">
+										<div class="line_title fl_l">
+											<input type="checkbox" value="0"> 常数
+										</div>
+										<input type="text" class="form-control line_detail" />
+										<div class="line_title part_top">
+											<input type="checkbox" value="0"> 产品构造特性
+										</div>
+										<div class="part_top">
+											<label class="line_title fl_l text_right">项目名称</label>
+											<div class="choose fl_l">
+												<select class="form-control width_part">
+													<option value="01"></option>
+												</select>
+											</div>
+											<label class="fl_l line_title text_right">产品构造特性</label>
+											<div class="choose fl_l">
+												<select class="form-control width_part">
+													<option value="01"></option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="btn_group mg_t">
+										<button type="submit" class="btn btn-primary">提交</button>
+										<button type="button" class="btn btn-default">重置</button>
+										<button type="button" class="btn btn-default">关闭</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>	
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</html>

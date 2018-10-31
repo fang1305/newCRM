@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>家庭联络人</title>
+		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/customer/holder.css" />
+		<style>
+			.line_detail{
+				width: 360px;
+			}
+			.line_title{
+				width: 120px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content" ng-app="">
+			<div class="headCom"></div>
+			<div ng-include="'../head.html'"></div>
+			<div class="main_body">
+				<div class="place_set">
+					<div class="place">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+						家庭联络人
+					</div>
+				</div>
+				<div class="custom_main">
+					<div class="main_title">
+						<div class="title left">家庭联络人</div>
+						<div class="btn_group">
+							<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-default">添加</button>
+							<a href="###"><button type="button"  data-toggle="modal" data-target="#myModal" class="btn btn-default">修改</button></a>
+							<a href="###"><button type="button"  data-toggle="modal" data-target="#myModal" class="btn btn-default">编辑负责人</button></a>
+						</div>
+					</div>
+					<div class="custom_list" >
+						<div class="title_hide"></div>
+						<div class="list_table col-sm-12">
+							<table class="table table-bordered table-striped text-center">
+							  	<thead>
+								  		<tr>
+								  			<th>家庭负责人</th>	
+								  			<th>关系</th>	
+									  		<th>姓名</th>	
+									  		<th>身份证号码</th>
+									  		<th>出生日期</th>
+									  		<th>家庭电话</th>
+									  		<th>办公室电话</th>
+									  		<th>手机</th>
+									  		<th>邮箱</th>
+								  		</tr>
+								  	</thead>
+								  	<tbody>
+								  		<tr>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  		</tr>
+								  	</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							添加家庭联络人
+						</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row mg_t">
+							<div class="line_title left text_right">家庭负责人：</div>
+							<div class="line_detail left">
+								<input type="text" class="form-control">
+							</div>	
+						</div>
+						<div class="row mg_t invite_time">
+							<div class="line_title left text_right">关系：</div>
+							<div class="line_detail left">
+								<input type="text" class="form-control">
+							</div>	
+						</div>
+						<div class="row mg_t invite_time">
+							<div class="line_title left text_right">姓名：</div>
+							<div class="line_detail left">
+								<input type="text" class="form-control">
+							</div>	
+						</div>
+						<div class="row mg_t invite_time">
+							<div class="line_title left text_right">身份证号：</div>
+							<div class="line_detail left">
+								<input type="text" class="form-control">
+							</div>	
+						</div>
+						<div class="row mg_t invite_time">
+							<div class="line_title left text_right">家庭电话：</div>
+							<div class="line_detail left">
+								<input type="text" class="form-control">
+							</div>	
+						</div>
+						<div class="row mg_t invite_time">
+							<div class="line_title left text_right">出生日期：</div>
+							<div class="line_detail left">
+								<input type="date" class="form-control">
+							</div>	
+						</div>
+						<div class="row mg_t invite_time">
+							<div class="line_title left text_right">办公室电话：</div>
+							<div class="line_detail left">
+								<input type="text" class="form-control">
+							</div>	
+						</div>
+						<div class="row mg_t invite_time">
+							<div class="line_title left text_right">手机：</div>
+							<div class="line_detail left">
+								<input type="text" class="form-control">
+							</div>	
+						</div>
+						<div class="row mg_t invite_time">
+							<div class="line_title left text_right">邮箱：</div>
+							<div class="line_detail left">
+								<input type="text" class="form-control">
+							</div>	
+						</div>
+						<div class="row mg_t"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary">
+							提交
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>	
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</html>

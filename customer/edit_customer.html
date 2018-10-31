@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>个人客户信息</title>
+		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/customer/guarantee.css" />
+		<link rel="stylesheet" type="text/css" href="../css/fileinput.css"/>
+		<style type="text/css">
+			.custom_list td{
+				border:none!important;			
+			}
+			.width_part{
+				width: 80%!important;
+			}
+			.custom_list tr{
+				height: 60px;
+			}
+			.modal tr{
+				height: 34px;
+			}
+			.modal th{
+				text-align: center;
+			}
+			.custom_list tr td{
+				line-height: 34px!important;
+			}
+			.custom_list textarea{
+				resize: none;
+			}
+			.width_left{
+				width: 40%!important;
+				float: left!important;
+			}
+			.width_more{
+				width: 60%!important;
+			}
+			.position_re{
+				position: relative!important;
+			}
+			.position_ab{
+				position: absolute!important;
+				right: 24%!important;
+				top: 18px!important;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content" ng-app="">
+			<div class="headCom"></div>
+			<div ng-include="'../head.html'"></div>
+			<div class="main_body">
+				<div class="place_set">
+					<div class="place">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+						客户信息
+					</div>
+				</div>
+				<div class="custom_main">
+					<div class="main_title">
+						<div class="title left">
+							客户信息
+						</div>
+						<div class="btn_group">
+							<button type="button" class="btn btn-default">提交</button>
+						</div>
+					</div>
+					<div class="custom_list" >
+						<div class="guarantee_money">
+							<div class="guarantee_title">客户信息</div>
+							<div class="row mg_t">
+								<table class="table">
+									<tr>
+										<td class="text_right">客户编号 </td>
+										<td><input type="text" class="form-control width_part" /></td>
+										<td class="text_right">客户姓名 </td>
+										<td><input type="text" class="form-control width_part" /></td>
+										<td class="text_right" rowspan="3">照片 </td>
+										<td rowspan="3" style="border: 1px solid #eee!important;">
+											<img src="../img/index/person2.jpg" alt="" style="width: 120px;margin: 0 auto;display: block;"/>
+											<!--<input id="f_upload" type="file" class="file" data-show-preview="false" />-->
+										</td>
+									</tr>
+									<tr>
+										<td class="text_right">客户服务组 </td>
+										<td class="position_re">
+											<input type="text" class="form-control width_part" />
+											<span data-toggle="modal" data-target="#myModal_person" class="position_ab glyphicon glyphicon-th"></span>
+										</td>
+										<td class="text_right"></td>
+										<td>
+											<input type="checkbox" id="inlineCheckbox1" value="option1"> 潜在客户&nbsp;&nbsp;&nbsp;
+											<input type="checkbox" id="cancel" value="1"> 取消客户
+										</td>
+									</tr>
+									<tr>
+										<td class="text_right">年龄 </td>
+										<td><input type="number" class="form-control width_part" /></td>
+										<td class="text_right">性别 </td>
+										<td>
+											<select class="form-control width_part">
+												<option value="01">男</option>
+												<option value="02">女</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td class="text_right">(原)单位 </td>
+										<td><input type="text" class="form-control width_part" /></td>
+										<td class="text_right">(原)职务 </td>
+										<td><input type="text" class="form-control width_part" /></td>
+										<td class="text_right">邮编 </td>
+										<td><input type="text" class="form-control" /></td>
+									</tr>
+									<tr>
+										<td class="text_right">国家 </td>
+										<td colspan=""><input type="text" class="form-control width_part" /></td>
+										<td class="text_right">省份 </td>
+										<td><input type="text" class="form-control width_part" /></td>
+										<td class="text_right">城市 </td>
+										<td><input type="text" class="form-control" /></td>
+									</tr>
+									<tr>
+										<td class="text_right">区域 </td>
+										<td colspan=""><input type="text" class="form-control width_part" /></td>
+										<td class="text_right">其他详细地址 </td>
+										<td><input type="text" class="form-control" /></td>
+										<td class="text_right">成为会员时间 </td>
+										<td><input type="date" class="form-control" /></td>
+									</tr>
+									<tr>
+										<td class="text_right">联系方式 </td>
+										<td>
+											<select class="form-control width_left">
+												<option value="01">座机</option>
+												<option value="02">手机</option>
+												<option value="03">邮箱</option>
+												<option value="03">个人首页</option>
+											</select>
+											<input type="text" class="form-control width_more"/>
+										</td>
+										<td class="text_right">会员类型 </td>
+										<td>
+											<select class="form-control width_left">
+												<option value="01">按转化程度</option>
+												<option value="02">按公司授予荣誉</option>
+												<option value="03">按消费的产品</option>
+											</select>
+											<input type="text" class="form-control width_more"/>
+										</td>
+										<td class="text_right">生日 </td>
+										<td><input type="date" class="form-control" /></td>
+									</tr>
+									<tr>
+										<td class="text_right">来源 </td>
+										<td>
+											<select class="form-control">
+												<option value="01">搜单</option>
+												<option value="02">转介</option>
+												<option value="03">团体</option>
+											</select>
+										</td>
+										<td class="text_right">主要所有人 </td>
+										<td class="position_re">
+											<input type="text" class="form-control width_part" />
+											<span data-toggle="modal" data-target="#myModal" class="position_ab glyphicon glyphicon-th"></span>
+										</td>
+										<td class="text_right">所有人编号 </td>
+										<td><input type="text" class="form-control" /></td>
+									</tr>
+									<tr>
+										<td class="text_right">身份证号码 </td>
+										<td><input type="text" class="form-control width_part" /></td>
+										<td class="text_right">客户级别 </td>
+										<td><input type="text" class="form-control width_part" /></td>
+										<td class="text_right">客户信用度 </td>
+										<td><input type="text" class="form-control" /></td>
+									</tr>
+									<tr>
+										<td class="text_right">转介人 </td>
+										<td><input type="text" class="form-control width_part" /></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							主要所有人
+						</h4>
+					</div>
+					<div class="modal-body">
+						<table class="table table-bordered text-center">
+							<thead>
+								<tr>
+									<th>主要所有人</th>
+									<th>姓名</th>
+									<th>称谓</th>
+									<th>身份证号</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>力邀</td>
+									<td></td>
+									<td></td>
+									<td>131124199405014545</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary">
+							提交更改
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div>
+		
+		<div class="modal fade" id="myModal_person" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							主要所有人
+						</h4>
+					</div>
+					<div class="modal-body">
+						<table class="table table-bordered text-center">
+							<thead>
+								<tr>
+									<th>主要成员</th>
+									<th>姓名</th>
+									<th>职位</th>
+									<th>部门</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>力邀</td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary">
+							提交更改
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>	
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<script type="text/javascript" src="../js/fileinput.js"></script>
+</html>

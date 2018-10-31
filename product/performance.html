@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>产品特性</title>
+		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/customer/place.css" />
+		<style type="text/css">
+			.guarantee_money{
+				min-height: 588px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content" ng-app="">
+			<div class="headCom"></div>
+			<div ng-include="'../head.html'"></div>
+			<div class="main_body">
+				<div class="place_set">
+					<div class="place">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+						产品特性
+					</div>
+				</div>
+				<div class="custom_main">
+					<div class="main_title">
+						<div class="title left">
+							产品特性
+						</div>
+					</div>
+					<div class="custom_list" >
+						<div class="row">
+							<div class="guarantee_money" style="width: 49%;float: left;margin-right: 1%;">
+								<div class="guarantee_title">产品特性</div>
+								<div class="row mg_t">
+									<table class="table table-bordered table-striped text-center">
+									  	<thead>
+									  		<tr>
+									  			<th>产品类型编号</th>	
+									  			<th>产品类型名称</th>	
+										  		<th>产品特性</th>	
+									  		</tr>
+									  	</thead>
+									  	<tbody>
+									  		<tr>
+									  			<td></td>
+									  			<td></td>
+									  			<td></td>
+									  		</tr>
+									  		<tr>
+									  			<td></td>
+									  			<td></td>
+									  			<td></td>
+									  		</tr>
+									  	</tbody>
+									</table>
+									
+									<div class="btn_group">
+										<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">添加</button>
+										<button type="button" class="btn btn-danger">删除</button>
+									</div>
+								</div>
+							</div>
+							<div class="guarantee_money" style="width: 50%;float: left;">
+								<div class="guarantee_title">产品性能对比</div>
+								<div class="row mg_t">
+									<table class="table table-bordered table-striped text-center">
+									  	<thead>
+									  		<tr>
+									  			<th>特性编号</th>	
+									  			<th>特性类型</th>	
+									  			<th>同类产品特性</th>
+									  		</tr>
+									  	</thead>
+									  	<tbody>
+									  		<tr>
+									  			<td></td>
+									  			<td></td>
+									  			<td></td>
+									  		</tr>
+									  		<tr>
+									  			<td></td>
+									  			<td></td>
+									  			<td></td>
+									  		</tr>
+									  	</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							新增产品特性
+						</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="line_title fl_l text_right">产品类型：</div>
+							<div class="line_detail fl_l"><input type="text" class="form-control width_part" /></div>
+						</div>
+						<div class="row mg_t">
+							<div class="line_title fl_l text_right">产品特性：</div>
+							<div class="line_detail fl_l"><input type="text" class="form-control width_part" /></div>
+						</div>
+						<div class="row mg_t"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary">
+							提交
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>	
+	<script src="../js/angular.min.js"></script>
+</html>

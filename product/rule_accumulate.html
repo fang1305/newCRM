@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>累积规则</title>
+		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/customer/guarantee.css" />
+		<style type="text/css">
+			.custom_list textarea{
+				resize: none;
+			}
+			.guarantee_money .text_right{
+				padding: 0 17px;
+			}
+			.fl_l{
+				float: left;
+			}
+			.line_title{
+				width: 160px;
+			}
+			.line_detail{
+				width: 290px;
+			}
+			.line_content{
+				width: 745px;
+			}
+			.add_part{
+				width: 50%!important;
+				margin: 8px 0 5px;
+			}
+			.add_main{
+				height: 100px;border: 1px solid #eee;padding: 0 10px;
+			}
+			.condition{
+				right: 4px;
+				border-left:1px solid #ddd;
+				width: 50px;
+				height: 100%;top: 0;
+				text-align: center;
+				line-height: 90px;
+				color: #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content" ng-app="">
+			<div class="headCom"></div>
+			<div ng-include="'../head.html'"></div>
+			<div class="main_body">
+				<div class="place_set">
+					<div class="place">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+						累积规则
+					</div>
+				</div>
+				<div class="custom_main">
+					<div class="main_title">
+						<div class="title left">
+							累积规则
+						</div>
+						<div class="btn_group">
+							<button type="button" class="btn btn-default">取消</button>
+						</div>
+					</div>
+					<div class="custom_list" >
+						<div class="guarantee_money">
+							<div class="guarantee_title">累积规则</div>
+							<div class="row mg_t">
+								<div class="line_title fl_l text_right">项目名称</div>
+								<div class="line_detail fl_l"><input type="text" class="form-control width_part" /></div>
+							</div>
+							<div class="row mg_t">
+								<div class="line_title fl_l text_right">有效起始日</div>
+								<div class="line_detail fl_l"><input type="date" class="form-control width_part" /></div>
+								<div class="line_title fl_l text_right">有效终止日</div>
+								<div class="line_detail fl_l"><input type="date" class="form-control width_part" /></div>
+							</div>
+							<div class="row mg_t">
+								<div class="line_title fl_l text_right">累加</div>
+								<div class="fl_l add_main line_detail">
+									<div class="add_part fl_l">
+										<input type="checkbox" value="0"> 常数
+									</div>
+									<input type="text" class="form-control fl_l add_part" />
+									<div class="fl_l add_part">
+										<input type="checkbox" value="0"> 产品构造特性
+									</div>
+									<select class="form-control fl_l add_part">
+										<option value="01"></option>
+									</select>
+								</div>
+							</div>
+							<div class="row mg_t">
+								<div class="line_title fl_l text_right">到</div>
+								<div class="line_detail fl_l">
+									<select class="form-control">
+										<option value="01">产品构造资源名称</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mg_t">
+								<div class="line_title fl_l text_right">产品构造条件</div>
+								<div class="line_content fl_l position_re">
+									<textarea class="form-control" rows="4"></textarea>
+									<a href="structural_conditions.html">
+										<div class="position_ab condition">
+											<span class="glyphicon glyphicon-option-horizontal"></span>
+										</div>
+									</a>
+								</div>
+							</div>
+							<div class="row mg_t">
+								<div class="line_title fl_l text_right">描述</div>
+								<div class="line_content fl_l">
+									<textarea class="form-control" rows="2"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>	
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</html>

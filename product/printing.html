@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>印刷品</title>
+		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
+		<link rel="stylesheet" href="../css/customer/place.css" />
+		<!--<link rel="stylesheet" href="../css/demo.css" />-->
+		<style type="text/css">
+			ul.ztree {
+				width:90%;height:520px;overflow:auto;margin-top: -6px;
+			}
+			.ztree li span{
+				font-size: 15px;
+			}
+			.ztree li {
+    			padding: 3px;
+    		}
+    		.guarantee_money{
+    			min-height: 556px;
+    		}
+    		.mt_10{
+    			margin-top: 10px!important;
+    		}
+		</style>
+	</head>
+	<body>
+		<div class="content" ng-app="">
+			<div class="headCom"></div>
+			<div ng-include="'../head.html'"></div>
+			<div class="main_body">
+				<div class="place_set">
+					<div class="place">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+						印刷品
+					</div>
+				</div>
+				<div class="custom_main">
+					<div class="main_title">
+						<div class="title left">
+							印刷品
+						</div>
+					</div>
+					<div class="custom_list" >
+						<div class="row" style="position: relative;">
+							<div class="guarantee_money" style="width: 25%;float: left;margin-right: 1%;">
+								<div class="guarantee_title">产品资料目录</div>
+								<div class="row mg_t">
+									<ul id="treeDemo" class="ztree"></ul>
+								</div>
+							</div>
+							<div class="guarantee_money" style="width: 74%;float: left;">
+								<div class="guarantee_title">印刷品列表</div>
+								<div class="btn_group mt_10">
+									<a href="printing_edit.html"><button type="button" class="btn btn-primary">添加</button></a>
+								</div>
+								<div style="clear: both;"></div>
+								<div class="row mt_10">
+									<table class="table table-bordered table-striped text-center">
+									  	<thead>
+									  		<tr>
+									  			<th>印刷品名称</th>	
+									  			<th>印刷品描述</th>	
+									  			<th>页数</th>	
+									  			<th>是否在仓库</th>	
+										  		<th>印刷品编号</th>	
+										  		<th>操作</th>	
+									  		</tr>
+									  	</thead>
+									  	<tbody>
+									  		<tr>
+									  			<td></td>
+									  			<td></td>
+									  			<td></td>
+									  			<td></td>
+									  			<td></td>
+									  			<td>
+									  				<a href="printing_edit.html" role="button" class="btn-sm btn-primary">编辑</a>
+									  				<a href="##" class="btn-sm btn-danger" role="button">删除</a>
+									  			</td>
+									  		</tr>
+									  		<tr>
+									  			<td></td>
+									  			<td></td>
+									  			<td></td>
+									  			<td></td>
+									  			<td></td>
+									  			<td>
+									  				<a href="printing_edit.html" class="btn-sm btn-primary" role="button">编辑</a>
+									  				<a href="##" class="btn-sm btn-danger" role="button">删除</a>
+									  			</td>
+									  		</tr>
+									  	</tbody>
+									</table>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>	
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<script src="../js/jquery.ztree.core.js"></script>
+	<script type="text/javascript">
+		<!--
+		var setting = {
+			view: {
+				showIcon: showIconForTree
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			}
+		};
+		var zNodes =[
+			{ id:1, pId:0, name:"手机", open:true},
+			{ id:11, pId:1, name:"诺基亚"},
+			{ id:111, pId:11, name:"诺基亚8810手机"},
+			{ id:1111, pId:111, name:"介绍"},
+			{ id:1112, pId:111, name:"技术参数"},
+			{ id:12, pId:1, name:"爱立信"},
+			{ id:121, pId:12, name:"爱立信手机"},
+			{ id:2, pId:0, name:"电池板", isParent:true},
+			{ id:3, pId:0, name:"充电器", isParent:true},
+			{ id:3, pId:0, name:"服务", isParent:true}
+		];
+
+		function showIconForTree(treeId, treeNode) {
+			return !treeNode.isParent;
+		};
+
+		$(document).ready(function(){
+			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+		});
+		//-->
+	</script>
+</html>

@@ -1,0 +1,66 @@
+.main_title{
+	width: 100%;height: 50px;line-height: 40px;
+}
+.custom_list{
+	width: 50%;height: 100%;background: #fff;
+}
+.custom_list thead{
+	width: 100%;background: #f5f4f4;
+}
+.custom_list thead th{
+	text-align: center;
+}
+
+.cus_title,.cus_info{
+	padding: 15px 5px 3px;
+	text-align: right;
+}
+.cus_info{
+	text-align: left;
+	border-bottom: 1px solid #666;
+}
+
+.custom_list tr,.custom_list th{
+	height: 40px;
+	line-height: 40px;
+}
+
+.custom_detail{
+	width: 50%;height: 100%;background: #fff;border: 1px solid #eee;
+}
+.info_detail{
+	width: 100%;
+}
+.info_detail th{
+	position: relative;
+	height: 79px;
+	line-height: 79px;
+	border-bottom: 1px solid #ddd;
+	font-size: 17px;
+}
+.info_detail th a{
+	position: absolute;
+	right: 15px;
+	bottom: 10px;
+	font-size: 14px;
+	text-decoration: none;
+	top: 25px;
+	font-weight: 500;
+}
+.info_detail td{
+	padding: 15px 0px 12px;
+}
+.info_detail td:nth-child(2n){
+
+	padding: 15px 0px 12px 5px;
+}
+.info_detail td:nth-child(2n+1){
+	color: #737373;
+	text-align: right;
+}
+.custom_list tr input[type=checkbox]{
+	margin-top: 7px;
+}
+.custom_list tr td {
+	line-height: 31px!important;
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>用户注册</title>
+    <style>
+    	.fl_l{
+    		float: left;
+    	}
+    	.res_head,.container_main{
+    		width: 70%;
+    		min-width: 800px;
+    		margin-top: 90px;
+    		margin-left: auto;
+    		margin-right: auto;
+    		height: 50px;
+    	}
+	.res_head span{
+		padding-left: 20px;
+		float: right;
+		line-height: 50px;
+	}
+	.res_box a{
+		color: #507DAF!important;
+		text-decoration: none;
+	}
+	/*主要内容*/
+	.container_main{
+		margin: 40px auto;
+		height: auto;
+		background: #FFF;
+		border-radius: 4px;
+		padding-bottom: 20px;
+	}
+	.container_main .head{
+		width: 100%;
+		color: #FFF;
+		padding: 24px 0;
+		background: #3699FF;
+	}
+	.container_main .main_input{
+		width: 340px;margin: 40px auto;color: #979797;
+	}
+	.container_main .main_input input{
+		margin: 20px 0 10px;
+		height: 40px;
+		background: #F4F4F4;
+		border:none;outline:none;
+	}
+	.container_main .main_input .pass_check input{
+		height: 12px;
+		width: 19px;
+		margin-top: 0;
+	}
+	.container_main .main_input .resgisterBtn{
+		width: 340px;height: 56px;
+		line-height: 56px;border-radius: 4px;
+		margin: 30px 0 50px;
+	}
+	.numInput,.numSend{
+		margin-top: 10px!important;
+		margin-bottom: 0px!important;
+		width: 210px;
+	}
+	.numSend{
+		width: 120px;margin-left: 10px!important;color:#979797;
+	}
+	.error_color{
+		color: #F76360;
+	}
+	.num_err{
+		margin-top: 10px;
+	}
+	.tel_had,.num_err,.tel_err{
+		display: none;
+	}
+	.live_color{
+		color: #3699FF;
+	}
+	.active_color{
+		color: #333;
+	}
+ </style>
+</head> 
+<body>
+	<div class="res_head">
+		<!--<span class="fs_12"><a href="###">返回上一页面</a></span>-->
+		<span class="fs_12">已有账号,<a href="login.html">马上登陆</a></span>
+	</div>
+	<div class="container_main res_box choose_status">
+		<div class="head text-center fs_23">注册CRM账户</div>
+		<div class="main_input">
+			<input type="text" class="form-control telInput" placeholder="请输入手机号或邮箱">
+			<span class="tel_had">该手机号已经注册,可<a href="###">直接登录</a></span>
+			<p class="tel_err error_color">请输入正确的手机号</p>
+			<!--<input type="text" class="form-control fl_l numInput" placeholder="请输入验证码">
+			<input type="button" class="form-control fl_l numSend numJudge" value="发送验证码">
+			<div class="clear"></div>
+			<p class="num_err"><span class="error_color">验证码错误</span>&nbsp;&nbsp;请重新获取填写</p>-->
+			<input type="text" class="form-control user" placeholder="用户昵称">
+			<input type="password" class="form-control pass" placeholder="请设置密码">
+			<input type="submit" class="resgisterBtn fs_23" value="注册">
+		</div>
+	</div>
+	<footer style="width: 100%;">
+		<img src="../img/index/footer.png" alt="" width="100%">
+	</footer>
+</body>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script>
+	function timeSet(){
+		if(num>0){
+			console.log(num)
+			$('.numSend').val(num+'s后重新获取');
+			num=num-1;
+		}else{
+			clearInterval(inter);
+			$('.numSend').addClass('numJudge')
+			$('.numSend').css('color','#3699FF')
+			$('.numSend').val('重新获取验证码');
+		}
+	}
+</script>
+</html>

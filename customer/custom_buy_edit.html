@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>编辑客户购买的产品信息</title>
+		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/customer/guarantee.css" />
+		<link rel="stylesheet" type="text/css" href="../css/fileinput.css"/>
+		<style type="text/css">
+			.custom_list td{
+				border:none!important;			
+			}
+			.width_part{
+				width: 80%!important;
+			}
+			.custom_list tr{
+				height: 60px;
+			}
+			.modal tr{
+				height: 34px;
+			}
+			.modal th{
+				text-align: center;
+			}
+			.custom_list tr td{
+				line-height: 34px!important;
+			}
+			.custom_list textarea{
+				resize: none;
+			}
+			.width_left{
+				width: 40%!important;
+				float: left!important;
+			}
+			.width_more{
+				width: 60%!important;
+			}
+			.position_re{
+				position: relative!important;
+			}
+			.position_ab{
+				position: absolute!important;
+				right: 24%!important;
+				top: 18px!important;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content" ng-app="">
+			<div class="headCom"></div>
+			<div ng-include="'../head.html'"></div>
+			<div class="main_body">
+				<div class="place_set">
+					<div class="place">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+						客户信息
+					</div>
+				</div>
+				<div class="custom_main">
+					<div class="main_title">
+						<div class="title left">
+							客户购买的产品/服务表格
+						</div>
+						<div class="btn_group">
+							<button type="button" class="btn btn-default">提交</button>
+						</div>
+					</div>
+					<div class="custom_list" >
+						<div class="guarantee_money">
+							<div class="guarantee_title">客户购买的产品/服务表格</div>
+							<div class="row mg_t">
+								<table class="table">
+									<tr>
+										<td class="text_right">合同号 </td>
+										<td><input type="text" class="form-control width_part" /></td>
+										<td class="text_right">购买产品时间 </td>
+										<td><input type="date" class="form-control width_part" /></td>
+										<td class="text_right">合同结束日 </td>
+										<td><input type="date" class="form-control width_part" /></td>
+									</tr>
+									<tr>
+										<td class="text_right">产品状态 </td>
+										<td>
+											<select class="form-control width_part">
+												<option value="01">使用中</option>
+												<option value="02">不再使用</option>
+											</select>
+										</td>
+										<td class="text_right">销售价格 </td>
+										<td><input type="number" class="form-control width_part" /></td>
+										<td class="text_right">折扣% </td>
+										<td><input type="number" class="form-control width_part" /></td>
+									</tr>
+									<tr>
+										<td class="text_right">客户满意度 </td>
+										<td>
+											<select class="form-control width_part">
+												<option value="01">很满意</option>
+												<option value="02">满意</option>
+												<option value="03">一般</option>
+												<option value="04">不满意</option>
+											</select>
+										</td>
+										<td class="text_right">销售员 </td>
+										<td>
+											<select class="form-control width_part">
+												<option value="01">工作人员列表</option>
+											</select>
+										</td>
+										<td class="text_right">付款周期 </td>
+										<td>
+											<select class="form-control width_part">
+												<option value="01"></option>
+											</select>
+										</td>
+									</tr>
+								</table>
+								<div class="tab_border  col-sm-12">
+									<div class="guarantee_title">产品</div>
+									<table class="table mg_t">
+										<tr>
+											<td class="text_right">产品号 </td>
+											<td class="position_re">
+												<input type="text" class="form-control width_part" />
+												<span data-toggle="modal" data-target="#myModal" class="position_ab glyphicon glyphicon-th"></span>
+											</td>
+											<td class="text_right">产品名称 </td>
+											<td><input type="text" class="form-control width_part" /></td>
+											<td class="text_right">产品序列号 </td>
+											<td><input type="text" class="form-control width_part" /></td></tr>
+										</tr>
+										<tr>
+											<td class="text_right">生产厂商 </td>
+											<td>
+												<select class="form-control width_part">
+													<option value="01"></option>
+												</select>
+											</td>
+											<td class="text_right">代理商 </td>
+											<td>
+												<select class="form-control width_part">
+													<option value="01"></option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="btn_group mg_t">
+									<a href="custom_buy.html"><button type="button" class="btn btn-default">列表</button></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							主要所有人
+						</h4>
+					</div>
+					<div class="modal-body">
+						<table class="table table-bordered text-center">
+							<thead>
+								<tr>
+									<th>主要所有人</th>
+									<th>姓名</th>
+									<th>称谓</th>
+									<th>身份证号</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>力邀</td>
+									<td></td>
+									<td></td>
+									<td>131124199405014545</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary">
+							提交更改
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div>
+		
+		<div class="modal fade" id="myModal_person" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							主要所有人
+						</h4>
+					</div>
+					<div class="modal-body">
+						<table class="table table-bordered text-center">
+							<thead>
+								<tr>
+									<th>主要成员</th>
+									<th>姓名</th>
+									<th>职位</th>
+									<th>部门</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>力邀</td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary">
+							提交更改
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>	
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<script type="text/javascript" src="../js/fileinput.js"></script>
+</html>

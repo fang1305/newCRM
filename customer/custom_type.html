@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>客户类型信息</title>
+		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/customer/place.css" />
+		<style>
+			table tr td:nth-child(4){
+				width: 490px!important;
+			}
+			table tr td:nth-child(5){
+				width: 220px!important;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content" ng-app="">
+			<div class="headCom"></div>
+			<div ng-include="'../head.html'"></div>
+			<div class="main_body">
+				<div class="place_set">
+					<div class="place">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+						客户类型
+					</div>
+				</div>
+				
+				<div class="custom_main">
+					<div class="custom_list mg_t" >
+						<div class="btn-group btn_choose" role="group"></div>
+						<div class="input-group search">
+						  <input type="text" class="form-control" placeholder="请输入要搜索的内容" aria-describedby="basic-addon2">
+						  <span class="input-group-addon search_btn" id="basic-addon2">搜索</span>
+						</div>
+						<div class="guarantee_money">
+							<div class="guarantee_title">客户类型信息</div>
+							<div class="row mg_t">
+								<table class="table table-bordered table-striped text-center">
+								  	<thead>
+								  		<tr>	
+								  			<th>类型</th>	
+								  			<th>级别</th>	
+									  		<th>创建日期</th>	
+									  		<th>备注</th>	
+									  		<th>操作</th>	
+								  		</tr>
+								  	</thead>
+								  	<tbody>
+								  		<tr>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  			<td>
+								  				<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-sm btn-info">编辑</button>
+												<button type="button" class="btn btn-sm btn-danger">删除</button>
+								  			</td>
+								  		</tr>
+								  	</tbody>
+								</table>
+								<div class="btn_group">
+									<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">添加</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							客户类型
+						</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row mg_t">
+							<div class="line_title left text_right">类型：</div>
+							<div class="line_detail left">
+								<input type="text" class="form-control width_part" />
+							</div>
+						</div>
+						<div class="row mg_t">
+							<div class="line_title left text_right">级别：</div>
+							<div class="line_detail left">
+								<input type="text" class="form-control width_part" />
+							</div>
+						</div>
+						<div class="row mg_t invite_time">
+							<div class="line_title left text_right">备注：</div>
+							<div class="line_detail left">
+								<textarea class="form-control" rows="7"></textarea>	
+							</div>	
+						</div>
+						<div class="row mg_t"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary">
+							提交
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>	
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<script type="text/javascript">
+		$('.btn_choose .btn').click(function(){
+			$(this).attr('class','btn btn-primary').siblings('.btn').attr("class","btn btn-default");
+		});
+	</script>
+</html>

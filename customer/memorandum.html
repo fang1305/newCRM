@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>备忘录信息</title>
+		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/customer/place.css" />
+	</head>
+	<body>
+		<div class="content" ng-app="">
+			<div class="headCom"></div>
+			<div ng-include="'../head.html'"></div>
+			<div class="main_body">
+				<div class="place_set">
+					<div class="place">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+						备忘录
+					</div>
+				</div>
+				
+				<div class="custom_main">
+					
+					<div class="custom_list mg_t" >
+						<div class="btn-group">
+						请选择投诉类型：
+					</div>
+					<div class="btn-group btn_choose" role="group">
+					  <button type="button" class="btn btn-primary">私人备忘录</button>
+					  <button type="button" class="btn btn-default">共享备忘录</button>
+					</div>
+					<div class="input-group search">
+					  <input type="text" class="form-control" placeholder="请输入要搜索的内容" aria-describedby="basic-addon2">
+					  <span class="input-group-addon search_btn" id="basic-addon2">搜索</span>
+					</div>
+						<div class="guarantee_money">
+							<div class="guarantee_title">备忘录列表</div>
+							<div class="row mg_t">
+								<table class="table table-bordered table-striped text-center">
+								  	<thead>
+								  		<tr>
+								  			<th>创建日期</th>	
+								  			<th>创建人</th>	
+									  		<th>备忘录类型</th>	
+									  		<th>备忘录</th>	
+									  		<th>最近修改日期</th>	
+								  		</tr>
+								  	</thead>
+								  	<tbody>
+								  		<tr>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  		</tr>
+								  		<tr>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  			<td></td>
+								  		</tr>
+								  	</tbody>
+								</table>
+								<div class="btn_group">
+									<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">添加</button>
+									<button type="button" class="btn btn-danger">删除</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							备忘录添加
+						</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row mg_t">
+							<div class="line_title left text_right">备忘录类型：</div>
+							<div class="line_info left">
+								<select class="form-control">
+									<option value="02">私人备忘录</option>
+									<option value="01">共享备忘录</option>
+								</select>
+							</div>	
+						</div>
+						<div class="row mg_t invite_time">
+							<div class="line_title left text_right">备忘录：</div>
+							<div class="line_detail left">
+								<textarea class="form-control" rows="7"></textarea>	
+							</div>	
+						</div>
+						<div class="row mg_t"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary">
+							提交
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>	
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<script type="text/javascript">
+		$('.btn_choose .btn').click(function(){
+			$(this).attr('class','btn btn-primary').siblings('.btn').attr("class","btn btn-default");
+		});
+	</script>
+</html>

@@ -1,0 +1,78 @@
+.custom_list{
+	position:relative;
+	width: 100%;
+	min-height: 93%;
+	background: #fff;
+}
+.custom_list{
+	padding: 13px 24px;
+}
+.custom_list .choose{
+	display: none;
+}
+.mg_l{
+	margin-left: 60px!important;
+}
+.guarantee_money{
+	position:relative;width: 100%;
+	/*height: 100px;*/
+	line-height:30px;
+	border: 1px solid #ddd;
+	margin-top: 30px;
+	padding: 0px 20px 10px;
+	/*max-height: 45%;*/
+}
+.search{
+	width: 350px;
+	float: right;
+}
+.search .search_btn{
+	cursor: pointer;
+}
+.guarantee_title{
+	font-weight: 600;height: 30px;
+	position: absolute;top: -15px;
+	background: #fff;
+	left: 10px;
+	padding: 0 15px;
+}
+
+
+.guarantee_money thead{
+	background: #F5F4F4;
+}
+.guarantee_money thead th{
+	text-align: center;
+}
+.guarantee_money tr,.guarantee_money th{
+	height: 40px;
+	/*min-width: 120px;*/
+	line-height: 40px;
+}
+
+
+.fl_l{
+	float:left
+}
+.line_title,.line_place{
+	width: 110px;
+	line-height: 33px;
+}
+.line_place{
+	width: 60px;
+}
+.line_choose{
+	width: 86px;
+}
+.line_detail{
+	width: 380px;
+}
+.line_radio{
+	padding-top: 5px;
+}
+.mg_t{
+	margin-top:15px!important;
+}
+.line_area{
+	width:400px;
+}

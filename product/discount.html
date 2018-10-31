@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>批量折扣</title>
+		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/customer/place.css" />
+		<style type="text/css">
+			ul.ztree {
+				width:90%;height:520px;overflow:auto;margin-top: -6px;
+			}
+			.ztree li span{
+				font-size: 15px;
+			}
+			.ztree li {
+    			padding: 3px;
+    		}
+    		.guarantee_money{
+    			min-height: 606px;
+    		}
+    		.part_left{
+    			width: 44%;float: left;margin-right: 1%;
+    		}
+    		.part_right{
+    			width: 55%;float: left;
+    		}
+    		.text_right{
+				padding: 0 17px 0 0;
+			}
+			.fl_l{
+				float: left;
+			}
+			.line_title{
+				width: 130px;
+				line-height: 33px;
+			}
+			.line_detail{
+				width: 290px!important;
+			}
+			.line_num{
+				width:130px!important;
+			}
+			.line_to{
+				width: 30px!important;
+				text-align: center;
+				line-height: 34px;
+			}
+			.line_top label{
+				width: 25%!important;
+			}
+			.tab_detail{
+				width: 45%!important;
+				min-width: 290px!important;
+			}
+			.tab_info{
+				width: 70%!important;
+				min-width: 290px!important;
+			}
+			.line_top{
+				margin-bottom: 25px!important;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content" ng-app="">
+			<div class="headCom"></div>
+			<div ng-include="'../head.html'"></div>
+			<div class="main_body">
+				<div class="place_set">
+					<div class="place">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+						批量折扣
+					</div>
+				</div>
+				<div class="custom_main">
+					<div class="main_title">
+						<div class="title left">
+							批量折扣
+						</div>
+					</div>
+					<div class="custom_list" >
+						<div class="row" style="position: relative;">
+							<div class="guarantee_money part_left">
+								<div class="guarantee_title">批量折扣表格</div>
+								<form method="post">
+									<div class="row mg_t">
+										<div class="form-group line_top">
+										    <label class="text_right fl_l">产品名称</label>
+										    <input type="text" class="form-control tab_detail" />
+										</div>
+										<div class="form-group line_top">
+										    <label class="text_right fl_l">折扣方法</label>
+										    <select class="form-control tab_detail">
+												<option value="01">简单批量折扣</option>
+												<option value="02">层次批量折扣</option>
+											</select>
+										</div>
+										<div class="form-group line_top">
+										    <label class="text_right fl_l">有效起始日</label>
+										    <input type="date" class="form-control tab_detail" />
+										</div>
+										<div class="form-group line_top">
+										    <label class="text_right fl_l">有效终止日</label>
+										    <input type="date" class="form-control tab_detail" />
+										</div>
+										<div class="form-group line_top">
+										    <label class="text_right fl_l">描述</label>
+										    <textarea rows="5" class="form-control tab_info"></textarea>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="guarantee_money tab-content part_right">
+								<div class="guarantee_title">批量折扣项列表</div>
+								<div class="mg_t">
+									<table class="table table-bordered table-striped text-center">
+									  	<thead>
+									  		<tr>
+									  			<th>折扣项名称</th>	
+									  			<th>最小数量</th>
+									  			<th>最大数量</th>
+									  			<th>折扣%</th>
+									  			<th>描述</th>
+									  		</tr>
+									  	</thead>
+									  	<tbody>
+									  		<tr>
+									  			<td></td>
+									  			<td></td>
+									  			<td></td>
+									  			<td></td>
+									  			<td></td>
+									  		</tr>
+									  	</tbody>
+									</table>
+									
+									<div class="btn_group">
+										<button data-toggle="modal" data-target="#myModal" type="button" class="btn btn-default">添加</button>
+										<button type="button" class="btn btn-default">删除</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							添加折扣项
+						</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row mg_t">
+							<div class="line_title fl_l text_right">折扣项名称</div>
+							<div class="line_detail fl_l"><input type="text" class="form-control width_part" /></div>
+						</div>
+						<div class="row mg_t">
+							<div class="line_title fl_l text_right">数据范围</div>
+							<div class="line_num fl_l"><input type="number" class="form-control width_part" placeholder="最小数量" /></div>
+							<div class="line_to fl_l">-至-</div>
+							<div class="line_num fl_l"><input type="number" class="form-control width_part" placeholder="最大数量" /></div>
+						</div>
+						<div class="row mg_t">
+							<div class="line_title fl_l text_right">折扣</div>
+							<div class="line_num fl_l"><input type="number" class="form-control width_part" /></div>
+							<div class="line_to fl_l">%</div>
+						</div>
+						<div class="row mg_t">
+							<div class="line_title fl_l text_right">折扣</div>
+							<textarea rows="5" class="form-control tab_info"></textarea>
+						</div>
+						<div class="row mg_t"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary">
+							确认添加
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>	
+	<script src="../js/angular.min.js"></script>
+</html>
