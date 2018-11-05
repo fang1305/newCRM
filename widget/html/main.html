@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>导航页面</title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <style>
+        body{
+            font-size: 100px;
+        }
+        header{
+            background: #000;
+            height: .8rem;
+            width: 100%;
+            color: #fff;
+            text-align: center;
+            font-size: .23rem;
+        }
+        header ul li{
+            display: none;
+            position: relative;
+            line-height: .8rem
+        }
+        header ul li.active{
+            display: block;
+        }
+        .flex-wrap{
+            display: flex;
+            display: -webkit-box;
+            display: -webkit-flex;
+        }
+        .flex-con{
+            -webkit-box-flex: 1;
+            flex: 1;            
+        }
+        .flex-vertical{
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow:column;
+            flex-flow:column;
+        }
+        #footer{
+            width: 100%;
+            text-align: center;
+            font-size: .23rem;
+            position: fixed;
+            bottom: 0;
+            line-height: .8rem;
+            height: .8rem;
+            background: #f5f5f7;
+            border-top: .6px solid #9D9DA1;
+        }
+        #footer ul li{
+            position: relative;
+            color: #999;
+        }
+        #footer ul li.active{
+            color: #0ABB07;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap" class="flex-wrap flex-vertical">
+        <header>
+            <ul>
+                <li class="active">首页</li>
+                <li>销售链</li>
+                <li>我的</li>
+            </ul>
+        </header>
+        <div id="main" class="flex-con">
+
+        </div>
+        <div id="footer" class="border-t">
+            <ul class="flex-wrap">
+                <li tapmode onclick="randomSwitchBtn( this )" class="flex-con">首页</li>
+                <li tapmode onclick="randomSwitchBtn( this )" class="flex-con">销售链</li>
+                <li tapmode onclick="randomSwitchBtn( this )" class="flex-con">我的</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/common.js"></script>
+<script>
+    apiready = function(){
+        api.openFrameGroup({
+            name: 'group',
+            scrollEnabled: false,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: api.winWidth,
+                h: api.winHeight - $api.dom('header').offsetHeight - $api.dom('#footer').offsetHeight
+            },
+            index:0,
+            frames: [{
+                name: 'frame0',
+                url: 'frame0.html',
+                bgColor: '#fff'
+            }, {
+                name: 'frame1',
+                url: 'frame1.html',
+                bgColor: '#fff'
+            }, {
+                name: 'frame2',
+                url: 'frame2.html',
+                bgColor: '#fff'
+            }]
+        }, function(ret, err) {
+            var index = ret.index;
+        });
+
+        
+    }
+    //切换按钮
+    function  randomSwitchBtn(tag) {
+        if(tag == $api.dom('#footer li.active')) return;
+        var eFootList = $api.domAll('#footer li'),
+            eHeaderList = $api.domAll('header li'),
+            index = 0;
+        for(var i=0;i<eFootList.length;i++){
+            if(tag == eFootList[i]){
+                index = i;
+            }else{
+                $api.removeCls(eHeaderList[i], 'active');
+                $api.removeCls(eFootList[i], 'active');
+            }
+        }
+        $api.addCls(eHeaderList[index], 'active');
+        $api.addCls(eFootList[index], 'active');
+
+        api.setFrameGroupIndex({
+            name: 'group',
+            index: index
+        });
+    }
+</script>
+</html>
