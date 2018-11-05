@@ -5,10 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>销售链</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css" />
 </head>
 <body>
-    销售链
+    <div class="main">
+        <div onclick="createData()">创建数据库User</div>
+        <div onclick= "setData()">数据库set</div>
+        <div onclick = "getData()">数据库</div>
+    </div>
 </body>
+<script src="../script/api.js"></script>
+<script src="../script/common.js"></script>
+<script>
+    apiready = function(){
+        db.openDatabase({
+        name: 'test'
+    }, function(ret, err){        
+        if( ret.status ){
+            alert('打开成功');
+        }else{
+            alert( JSON.stringify( err ) );
+        }
+    });
+        
+    }
+    function  createData() {
+        db.executeSql({
+            name: 'test',
+            sql: 'CREATE TABLE Users(Id int, Name varchar(255), password varchar(255), token varchar(255), sex varchar(255))'
+        }, function(ret, err) {
+            if (ret.status) {
+                alert(JSON.stringify(ret));
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+    }
+    function getData() {
+        db.selectSql({
+            name: 'test',
+            sql: 'SELECT * FROM Users'
+        }, function(ret, err) {
+            if (ret.status) {
+                alert(JSON.stringify(ret));
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+    }
+    function  setData() {
+        db.selectSql({
+            name: 'test',
+            sql: 'INSERT INTO Users (Id, Name, password, token, sex) VALUES ("0","rose","123456","000djsdjs00d0sadn","女")'
+        }, function(ret, err) {
+            if (ret.status) {
+                alert(JSON.stringify(ret));
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+    }
+</script>
 </html>

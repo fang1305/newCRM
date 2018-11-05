@@ -12,3 +12,21 @@
     win.addEventListener(resizeEvt, recalc, false);
     doc.addEventListener("DOMContentLoaded", recalc, false);
 })(document, window);
+
+// 初始化
+var header,headerH;
+function fnInit() {
+    header = $api.dom('header');
+    $api.fixStatusBar(header);
+    headerH = $api.offset(header).h;
+}
+
+// 模块引入初始化
+var bMap,
+    db;
+function  moduleInit() {
+    // 数据库
+    db = api.require("db");
+    //百度地图
+    bMap = api.require("bMap")
+}

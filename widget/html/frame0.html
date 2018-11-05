@@ -5,36 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>首页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css" />
+    <style>
+        .main{
+            font-size: .3rem;
+        }
+    </style>
 </head>
 <body>
-    首页
+    <div class="main">
+        首页
+    </div>
 </body>
 <script src="../script/api.js"></script>
 <script src="../script/common.js"></script>
 <script>
     apiready = function(){
-        var map = api.require('bMap');
-        map.open({
-        rect: {
-        x: 0,
-        y: 0,
-        w: 320,
-        h: 300
-        },
-        center: {
-        lon: 116.4021310000,
-        lat: 39.9994480000
-        },
-        zoomLevel: 10,
-        showUserLocation: true,
-        fixedOn: api.frameName,
-        fixed: true
+        var bMap = api.require('bMap');
+        bMap.open({
+            rect: {
+                x: 0,
+                y: 100,
+                w: api.winWidth,
+                h: 300
+            },
+            center: {
+                lon: 116.4021310000,
+                lat: 39.9994480000
+            },
+            zoomLevel: 10,
+            showUserLocation: true,
+            fixedOn: api.frameName,
+            fixed: true
         }, function(ret) {
-        if (ret.status) {
-        alert('地图打开成功');
-        }
+            if (ret.status) {
+                // alert('地图打开成功');
+            }
         });
     }
 </script>
