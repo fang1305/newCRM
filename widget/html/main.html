@@ -66,7 +66,8 @@
         <header>
             <ul>
                 <li class="active">首页</li>
-                <li>销售链</li>
+                <li>市场营销</li>
+                <li>产品管理</li>
                 <li>我的</li>
             </ul>
         </header>
@@ -76,7 +77,8 @@
         <div id="footer" class="border-t">
             <ul class="flex-wrap">
                 <li tapmode onclick="randomSwitchBtn( this )" class="flex-con">首页</li>
-                <li tapmode onclick="randomSwitchBtn( this )" class="flex-con">销售链</li>
+                <li tapmode onclick="randomSwitchBtn( this )" class="flex-con">市场营销</li>
+                <li tapmode onclick="randomSwitchBtn( this )" class="flex-con">产品管理</li>
                 <li tapmode onclick="randomSwitchBtn( this )" class="flex-con">我的</li>
             </ul>
         </div>
@@ -87,6 +89,7 @@
 <script type="text/javascript" src="../script/common.js"></script>
 <script>
     apiready = function(){
+        moduleInit()
         api.openFrameGroup({
             name: 'group',
             scrollEnabled: false,
@@ -108,6 +111,10 @@
             }, {
                 name: 'frame2',
                 url: 'frame2.html',
+                bgColor: '#fff'
+            }, {
+                name: 'frame3',
+                url: 'frame3.html',
                 bgColor: '#fff'
             }]
         }, function(ret, err) {

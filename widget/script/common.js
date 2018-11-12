@@ -14,6 +14,7 @@
 })(document, window);
 
 // 初始化
+
 var header,headerH;
 function fnInit() {
     header = $api.dom('header');
@@ -21,6 +22,7 @@ function fnInit() {
     headerH = $api.offset(header).h;
 }
 
+    
 // 模块引入初始化
 var bMap,
     db;
@@ -29,4 +31,8 @@ function  moduleInit() {
     db = api.require("db");
     //百度地图
     bMap = api.require("bMap")
+}
+apiready = function () {
+    fnInit()
+    moduleInit();
 }
