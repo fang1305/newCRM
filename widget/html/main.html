@@ -12,12 +12,13 @@
             font-size: 100px;
         }
         header{
-            background: #000;
+            background: rgba(0,0,0,.8);
+            padding-top: 25px;
             height: .8rem;
             width: 100%;
             color: #fff;
             text-align: center;
-            font-size: .23rem;
+            font-size: .34rem;
         }
         header ul li{
             display: none;
@@ -47,14 +48,45 @@
             font-size: .23rem;
             position: fixed;
             bottom: 0;
-            line-height: .8rem;
-            height: .8rem;
+            height: .88rem;
             background: #f5f5f7;
-            border-top: .6px solid #9D9DA1;
+            /* border-top: .6px solid #9D9DA1; */
         }
         #footer ul li{
             position: relative;
             color: #999;
+            padding-top: .54rem;
+            background: url() no-repeat center;
+            background-size: .4rem;
+            background-position-y: .1rem;
+        }
+        #footer ul li:nth-child(1){
+            background-image: url('../image/main/icon_home0.png');
+        }
+        #footer ul li:nth-child(1).active{
+            background-image: url('../image/main/icon_home.png');
+        }
+        #footer ul li:nth-child(2){
+            background-image: url('../image/main/icon_market0.png');
+        }
+        #footer ul li:nth-child(2).active{
+            background-image: url('../image/main/icon_market.png');
+        }
+        #footer ul li:nth-child(3){
+            background-image: url('../image/main/icon_add.png');
+            background-size: .7rem;
+        }
+        #footer ul li:nth-child(4){
+            background-image: url('../image/main/icon_product0.png');
+        }
+        #footer ul li:nth-child(4).active{
+            background-image: url('../image/main/icon_product.png');
+        }
+        #footer ul li:nth-child(5){
+            background-image: url('../image/main/icon_mine0.png');
+        }
+        #footer ul li:nth-child(5).active{
+            background-image: url('../image/main/icon_mine.png');
         }
         #footer ul li.active{
             color: #0ABB07;
@@ -63,7 +95,7 @@
 </head>
 <body>
     <div id="wrap" class="flex-wrap flex-vertical">
-        <header>
+        <header id="header">
             <ul>
                 <li class="active">首页</li>
                 <li>市场营销</li>
@@ -76,10 +108,11 @@
         </div>
         <div id="footer" class="border-t">
             <ul class="flex-wrap">
-                <li tapmode onclick="randomSwitchBtn( this )" class="flex-con">首页</li>
-                <li tapmode onclick="randomSwitchBtn( this )" class="flex-con">市场营销</li>
-                <li tapmode onclick="randomSwitchBtn( this )" class="flex-con">产品管理</li>
-                <li tapmode onclick="randomSwitchBtn( this )" class="flex-con">我的</li>
+                <li tapmode onclick="randomSwitchBtn( this,0 )" class="flex-con">首页</li>
+                <li tapmode onclick="randomSwitchBtn( this,1 )" class="flex-con">市场营销</li>
+                <li tapmode onclick="randomSwitch()" class="flex-con"></li>
+                <li tapmode onclick="randomSwitchBtn( this,2 )" class="flex-con">产品管理</li>
+                <li tapmode onclick="randomSwitchBtn( this,3 )" class="flex-con">我的</li>
             </ul>
         </div>
     </div>
@@ -90,6 +123,13 @@
 <script>
     apiready = function(){
         moduleInit()
+        api.setStatusBarStyle({
+            style: 'dark',
+            color: "#000"
+        });
+        var header = document.querySelector('#header');
+        $api.fixStatusBar(header);
+
         api.openFrameGroup({
             name: 'group',
             scrollEnabled: false,
@@ -123,8 +163,35 @@
 
         
     }
+
+    // 弹出层
+    function randomSwitch() {
+        var actionButton = api.require('actionButton');
+        actionButton.open({
+            bg:"rgba(0,0,0,.9)",
+            items: [{
+                bgColor: '#f0f0f0',
+                title: '潜在客户'
+            }, {
+                bgColor: '#00CED1',
+                title: '产品信息'
+            }],
+            topHeight: api.winHeight,
+            pageControl: {
+                activeColor: '#778899',
+                inactiveColor: '#DDA0DD'
+            },
+            fixedOn: api.frameName
+        }, function(ret, err) {
+            if (ret) {
+                alert(JSON.stringify(ret));
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+    }
     //切换按钮
-    function  randomSwitchBtn(tag) {
+    function  randomSwitchBtn(tag,indexH) {
         if(tag == $api.dom('#footer li.active')) return;
         var eFootList = $api.domAll('#footer li'),
             eHeaderList = $api.domAll('header li'),
@@ -137,12 +204,12 @@
                 $api.removeCls(eFootList[i], 'active');
             }
         }
-        $api.addCls(eHeaderList[index], 'active');
+        $api.addCls(eHeaderList[indexH], 'active');
         $api.addCls(eFootList[index], 'active');
 
         api.setFrameGroupIndex({
             name: 'group',
-            index: index
+            index: indexH
         });
     }
 </script>

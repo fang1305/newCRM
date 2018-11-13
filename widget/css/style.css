@@ -1,3 +1,27 @@
 .main{
     font-size: .28rem;
 }
+ *{
+    box-sizing: border-box;
+}
+.color9{
+    color: #999999;
+}
+.color3{
+    color: #333333;
+}
+.color6{
+    color: #666666;
+}
+.fs_32{
+    font-size: .32rem;
+}
+.fs_36{
+    font-size: .36rem;
+}
+.fs_24 {
+    font-size: .24rem;
+}
+.fs_28 {
+    font-size: .28rem;
+}

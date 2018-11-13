@@ -11,6 +11,7 @@
         .main{
             font-size: .3rem;
             padding: .1rem 3%;
+            background: #fff;
         }
         .search{
             width: 100%;
@@ -51,6 +52,30 @@
             padding: .1rem;
             box-sizing: border-box;
         }
+        .list .title{
+            height: .88rem;
+            width: 100%;
+            line-height: .88rem;
+            display: flex;
+        }
+        .list .title h3{
+            flex: 1;
+            font-size: .36rem;
+            font-weight: 600;
+        }
+        .list .title a{
+            font-size: .24rem;
+            color: #666;
+            text-decoration: none;
+        }
+        /* .list .title:before{
+            content: "";
+            height: .4rem;
+            width: .05rem;
+            background: #3699FF;
+            position: absolute;
+            left: 0;
+        } */
     </style>
 </head>
 <body>
@@ -67,6 +92,13 @@
                 产品管理
             </div>
         </div>
+        <div class="list">
+            <div class="title">
+                <h3>客户管理</h3>
+                <a href="##" class="more">查看更多</a>
+            </div>
+        </div>
+
     </div>
 </body>
 <script src="../script/api.js"></script>
