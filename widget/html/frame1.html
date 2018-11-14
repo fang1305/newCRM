@@ -122,9 +122,6 @@
             <div class="flowList">销售会</div>
         </div>
         <div class="listBox">
-            <!-- <div class="title">
-                潜在用户
-            </div> -->
             <div class="customer">
                 <img src="../image/market/login-bg.jpg" />
                 <div class="detail">
@@ -140,23 +137,7 @@
                     <img src="../image/market/icon_right.png" />
                 </div>
             </div>
-            <div class="customer">
-                <img src="../image/market/login-bg.jpg" />
-                <div class="detail">
-                    <p class="fs_32">王姓名</p>
-                    <p>2018-09-39</p>
-                    <p>邀请次数:3</p>
-                </div>
-                <div class="details">
-                    <p class="tags">13094893839</p>
-                    <p class="tags">传达</p>
-                </div>
-                <div class="more">
-                    <div class="yesBtn btn" onclick="travel('yes')">已参会</div>
-                    <div class="noBtn btn">未参会</div>
-                    <!-- <img src="../image/market/icon_right.png" /> -->
-                </div>
-            </div>
+            
         </div>
         <!-- <div onclick="createData()">创建数据库User</div>
         <div onclick= "setData()">数据库set</div>
@@ -165,43 +146,86 @@
 </body>
 <script src="../script/api.js"></script>
 <script src="../script/common.js"></script>
+<script src="../script/jquery.min.js"></script>
 <script>
     var db;
     apiready = function(){
-        db = api.require("db");
-        db.openDatabase({
-            name: 'test'
-        }, function(ret, err){        
-            if( ret.status ){
-                // alert('打开成功');
-            }else{
-                alert( JSON.stringify( err ) );
-            }
+        api.setRefreshHeaderInfo({
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#ccc',
+            textColor: '#fff',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...'
+        }, function(ret, err) {
+                api.refreshHeaderLoadDone();
         });
-
-        $api.addEvt($api.dom('.noBtn'), 'click', function(){
-            //do something
-            alert('no')
-        });
+        // db = api.require("db");
+        // db.openDatabase({
+        //     name: 'test'
+        // }, function(ret, err){        
+        //     if( ret.status ){
+        //         // alert('打开成功');
+        //     }else{
+        //         alert( JSON.stringify( err ) );
+        //     }
+        // });
+        getList();
+        $('.noBtn').click(function () {
+            alert('no')            
+        })
         
     }
-
+    function getList() {
+        $.ajax({
+            url:'market.json',
+            type:'GET',
+            dataType:'json',
+            success: function(res) {
+                console.log($api.jsonToStr(res));
+                var html = '';
+                for(var i = 0;i<res.date.length;i++){
+                    html += '<div class="customer">\
+                        <img src="../image/market/login-bg.jpg" />\
+                        <div class="detail">\
+                            <p class="fs_32">王姓名</p>\
+                            <p>2018-09-39</p>\
+                            <p>邀请次数:3</p>\
+                        </div>\
+                        <div class="details">\
+                            <p class="tags">13094893839</p>\
+                            <p class="tags">传达</p>\
+                        </div>\
+                        <div class="more">\
+                            <div class="yesBtn btn" onclick="travel("yes")">已参会</div>\
+                            <div class="noBtn btn">未参会</div>\
+                        </div>\
+                    </div>'
+                }
+                $('.listBox').append(html);
+            },error: function (err) {
+                console.log($api.jsonToStr(err))                
+            }
+        })
+    }
     // 参会情况
     function  travel(status) {
         api.openFrame({
-                name: 'dialog',
-                url: 'touch.html',
-                rect: {
-                        x:0,
-                        y:0,
-                        w:api.winWidth,
-                        h:api.winHeight
-                },
-                animation:{
-                    type:'fade'
-                },
-                bgColor: 'rgba(0,0,0,0.6)',
-                bounces: false
+            name: 'dialog',
+            url: 'touch.html',
+            rect: {
+                    x:0,
+                    y:0,
+                    w:api.winWidth,
+                    h:api.winHeight
+            },
+            animation:{
+                type:'fade'
+            },
+            pageParam:{
+                id:13
+            },
+            bgColor: 'rgba(0,0,0,0.6)',
+            bounces: false
         });
     }
 

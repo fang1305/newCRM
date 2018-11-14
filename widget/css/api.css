@@ -149,7 +149,9 @@ header .rightBtn {
     right: .3rem;
     color: #08BB08;
 }
-
+.text-center{
+    text-align: center
+}
 /* flex类名 */
 /* 定义 */
 .flex-def { display: -webkit-box;  display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;}

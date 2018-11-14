@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="../css/api.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../css/weui.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css" />
     <style>
@@ -19,6 +18,7 @@
             left: 0;
             right: 0;
             display: flex;
+            background: none;
             justify-content: center;
             align-items: center;
         }
@@ -83,7 +83,7 @@
                 <div class="weui-cells weui-cells_checkbox">
                     <label class="weui-cell weui-check__label" for="s11">
                         <div class="weui-cell__hd">
-                            <input type="radio" class="weui-check type" name="checkbox1" id="s11" checked="checked"/>
+                            <input type="radio" value="销售会" class="weui-check type" name="checkbox1" id="s11" checked="checked"/>
                             <i class="weui-icon-checked"></i>
                         </div>
                         <div class="weui-cell__bd">
@@ -92,7 +92,7 @@
                     </label>
                     <label class="weui-cell weui-check__label" for="s12">
                         <div class="weui-cell__hd">
-                            <input type="radio" name="checkbox1" class="weui-check type" id="s12"/>
+                            <input type="radio" value="品鉴会" name="checkbox1" class="weui-check type" id="s12"/>
                             <i class="weui-icon-checked"></i>
                         </div>
                         <div class="weui-cell__bd">
@@ -105,7 +105,7 @@
             <div class="dateChoose">
                 <input type="text" placeholder="请选择预约时间" class="dateSet fs_28" readonly onclick="getDate()" />
             </div>
-            <div class="btnBox fs_36">提交</div>
+            <div class="btnBox fs_36" id="submitBtn">提交</div>
         </div>
     </div>
 </body>
@@ -114,13 +114,44 @@
 <script src="../script/jquery.min.js"></script>
 <script>
     apiready = function(){
-         $('.main').click(function (e) {
-            api.closeFrame({
-                name: 'dialog'
+        $('.mainContent').click(function (e) {
+            api.confirm({
+                title: '',
+                msg:'您还没有提交预约数据,确认关闭吗?',
+                buttons: ['确定', '取消']
+            }, function(ret, err) {
+                var index = ret.buttonIndex;
+                if(index == 1){
+                    closeFrame('dialog')
+                }
             });
         });
         $('.wrap').click(function (e) {
             e.stopPropagation();          
+        })
+        $('#submitBtn').click(function () {
+            var obj = api.pageParam;
+            obj.date = $api.val($api.dom('.dateSet'));
+            obj.type = $api.val($api.dom('.type'));
+            if(!obj.date){
+                api.toast({
+                    msg: '日期选择错误,请重新选择',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+            }else{
+                api.confirm({
+                    title: '您预约参加'+obj.type,
+                    msg: '预约日期为'+obj.date,
+                    buttons: ['确定', '取消']
+                }, function(ret, err) {
+                    var index = ret.buttonIndex;
+                    if(index == 1){
+                        closeFrame('dialog')
+                    }
+                });
+            }
+            console.log($api.jsonToStr(obj))
         })
     }
     function  getDate(params) {
@@ -129,8 +160,7 @@
         api.openPicker({
             type: 'date',
             title:'选择时间',
-            minDate: nowDate,
-            date: "2018-11-19" 
+            minDate: nowDate
         },function(ret,err){
             var year = ret.year;
             var month = ret.month;
@@ -140,8 +170,13 @@
             var thisTime = new Date(thisDate);
             if(thisTime.getTime() < nowTime.getTime()){
                 console.log('错误')
+                api.toast({
+                    msg: '日期选择错误,请重新选择',
+                    duration: 2000,
+                    location: 'bottom'
+                });
             }else{
-                console.log('正确')
+                $api.val($api.dom('.dateSet'),thisDate)
             }
         }); 
     }

@@ -36,3 +36,9 @@ apiready = function () {
     fnInit()
     moduleInit();
 }
+
+function  closeFrame(name) {
+    api.closeFrame({
+        name: name
+    });
+}

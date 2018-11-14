@@ -12,13 +12,13 @@
             font-size: 100px;
         }
         header{
-            background: rgba(0,0,0,.8);
-            padding-top: 25px;
+            background: #000;
             height: .8rem;
             width: 100%;
             color: #fff;
             text-align: center;
             font-size: .34rem;
+            box-sizing: unset;
         }
         header ul li{
             display: none;
@@ -108,7 +108,7 @@
         </div>
         <div id="footer" class="border-t">
             <ul class="flex-wrap">
-                <li tapmode onclick="randomSwitchBtn( this,0 )" class="flex-con">首页</li>
+                <li tapmode onclick="randomSwitchBtn( this,0 )" class="flex-con active">首页</li>
                 <li tapmode onclick="randomSwitchBtn( this,1 )" class="flex-con">市场营销</li>
                 <li tapmode onclick="randomSwitch()" class="flex-con"></li>
                 <li tapmode onclick="randomSwitchBtn( this,2 )" class="flex-con">产品管理</li>
@@ -121,14 +121,17 @@
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript" src="../script/common.js"></script>
 <script>
-    apiready = function(){
+    var footerH,XFooterH;
+    apiready = function() {
+        footerH = $api.offset($api.byId('footer')).h;
+        XFooterH = $api.fixTabBar($api.byId('footer'));
+        fnInit()
         moduleInit()
-        api.setStatusBarStyle({
-            style: 'dark',
-            color: "#000"
-        });
-        var header = document.querySelector('#header');
-        $api.fixStatusBar(header);
+        // api.setStatusBarStyle({
+        //     style: 'dark',
+        //     color: "#3699FF"
+        // });
+        // $api.fixStatusBar($api.dom('#header'));
 
         api.openFrameGroup({
             name: 'group',
@@ -142,20 +145,16 @@
             index:0,
             frames: [{
                 name: 'frame0',
-                url: 'frame0.html',
-                bgColor: '#fff'
+                url: 'frame0.html'
             }, {
                 name: 'frame1',
-                url: 'frame1.html',
-                bgColor: '#fff'
+                url: 'frame1.html'
             }, {
                 name: 'frame2',
-                url: 'frame2.html',
-                bgColor: '#fff'
+                url: 'frame2.html'
             }, {
                 name: 'frame3',
-                url: 'frame3.html',
-                bgColor: '#fff'
+                url: 'frame3.html'
             }]
         }, function(ret, err) {
             var index = ret.index;
@@ -164,32 +163,6 @@
         
     }
 
-    // 弹出层
-    function randomSwitch() {
-        var actionButton = api.require('actionButton');
-        actionButton.open({
-            bg:"rgba(0,0,0,.9)",
-            items: [{
-                bgColor: '#f0f0f0',
-                title: '潜在客户'
-            }, {
-                bgColor: '#00CED1',
-                title: '产品信息'
-            }],
-            topHeight: api.winHeight,
-            pageControl: {
-                activeColor: '#778899',
-                inactiveColor: '#DDA0DD'
-            },
-            fixedOn: api.frameName
-        }, function(ret, err) {
-            if (ret) {
-                alert(JSON.stringify(ret));
-            } else {
-                alert(JSON.stringify(err));
-            }
-        });
-    }
     //切换按钮
     function  randomSwitchBtn(tag,indexH) {
         if(tag == $api.dom('#footer li.active')) return;
@@ -197,11 +170,14 @@
             eHeaderList = $api.domAll('header li'),
             index = 0;
         for(var i=0;i<eFootList.length;i++){
+            // $api.removeCls(eHeaderList[i], 'active');
             if(tag == eFootList[i]){
                 index = i;
             }else{
-                $api.removeCls(eHeaderList[i], 'active');
                 $api.removeCls(eFootList[i], 'active');
+            }
+            if(i != 4){
+                $api.removeCls(eHeaderList[i], 'active');
             }
         }
         $api.addCls(eHeaderList[indexH], 'active');
@@ -210,6 +186,29 @@
         api.setFrameGroupIndex({
             name: 'group',
             index: indexH
+        });
+    }
+
+    // 添加客户按钮
+    function  randomSwitch() {
+        api.openFrame({
+            name: 'addBox',
+            url: 'addBox.html',
+            rect: {
+                    x:0,
+                    y:23,
+                    w:api.winWidth,
+                    h:api.winHeight
+            },
+            animation:{
+                type:'fade',
+                subType:"from_bottom"
+            },
+            pageParam:{
+                id:13
+            },
+            bgColor: 'rgba(255,255,255,1)',
+            bounces: false
         });
     }
 </script>

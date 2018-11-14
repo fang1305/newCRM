@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/api.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/weui.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css" />
+    <style>
+        body,html{
+            background: rgba(0,0,0,0);
+        }
+        #header{
+            width: 100%;text-align: center;
+        }
+        #header img{
+            margin-top: 1.4rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <img src = "../image/logo.jpeg" width="50%" />
+    </div>
+</body>
+<script src="../script/api.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/jquery.min.js"></script>
+<script>
+    var MNActionButton;
+    apiready = function() {
+        MNActionButton = api.require('MNActionButton');
+        wrapAction();
+        var header = document.querySelector('#header');
+        $api.fixStatusBar(header);
+    }
+
+    function  wrapAction() {
+        MNActionButton.open({
+            layout: {
+                col: 4,
+                offset:30
+            },
+            styles: {
+                maskBg: 'rgba(255,255,255,0)', //（可选项）字符串类型；遮罩层背景，支持 rgb，rgba，#，img；默认：rgba(0,0,0,0.2)
+                bg: '#fff', //（可选项）字符串类型；菜单有效区域背景，支持 rgb，rgba，#，img；默认：#fff
+                cancelButton: { //（可选项）JSON 对象类型，取消按钮设置
+                    size: 30, //（可选项）数字类型；底部取消按钮的高和宽；默认：44
+                    icon: 'widget://image/main/icon_close.png', //（可选项）字符串类型：取消按钮的图标，要求本地路径（widget://、fs://）；默认：默认X型图标
+                },
+                item: { //（可选项）JSON 对象类型，菜单按钮设置
+                    titleColor: '#848484', //（可选项）字符串类型；菜单按钮文字颜色，支持 rgb，rgba，#；默认：#848484
+                }
+            },
+            items: [{ 
+                icon: 'widget://image/main/add_kehu.png', 
+                title: '添加客户' 
+            }, {
+                icon: 'widget://image/main/add_yuangong.png',
+                title: '添加员工'
+            }, {
+                icon: 'widget://image/main/add_products.png',
+                title: '添加产品'
+            }, {
+                icon: 'widget://image/main/add_vip.png',
+                title: '添加类型'
+            }, {
+                icon: 'widget://image/main/add_jibie.png',
+                title: '添加级别'
+            }]
+        }, function(ret, err) {
+            if (ret) {
+                closeFrame('addBox')
+                if(ret.index == 0){
+                    // 添加客户
+                }else if(ret.index == 1){
+                    // 添加类型
+                }else if(ret.index == 2){
+                    // 添加级别
+                }else if(ret.index == 3){
+                    // 添加产品
+                }else if(ret.index == 4){
+                    // 添加员工
+                }
+                // alert(JSON.stringify(ret));
+            } else {
+                // alert(JSON.stringify(err));
+            }
+        });
+    }
+</script>
+</html>
