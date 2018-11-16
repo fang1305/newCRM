@@ -153,6 +153,9 @@ header .rightBtn {
     text-align: center
 }
 /* flex类名 */
+.flex-box{
+    display: flex;
+}
 /* 定义 */
 .flex-def { display: -webkit-box;  display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;}
 

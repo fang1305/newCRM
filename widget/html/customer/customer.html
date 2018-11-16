@@ -8,8 +8,6 @@
     <title>title</title>
     <link rel="stylesheet" type="text/css" href="../../css/api.css" />
     <style>
-
-
         .main {
             padding: 0 .3rem;
             height: .6rem;
@@ -56,6 +54,19 @@
             float: right;
             margin-right: .28rem;
         }
+        .chooseType li{
+            font-size: .28rem;
+            flex: 1;
+        }
+        .chooseType li:before{
+            
+        }
+        .chooseType{
+            height: .8rem;line-height: .4rem;background: #FCFCFC;text-align: center;
+            border: none;
+            padding: .2rem 0;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 
@@ -71,6 +82,12 @@
             </span>
             <span class="rightBtn" tapmode onclick="addF()"></span>
         </div>
+        <ul class="chooseType flex-box">
+            <li>会员类型</li>
+            <li>会员类型</li>
+            <li>排序</li>
+            <li>筛选</li>
+        </ul>
     </header>
 
 </body>
@@ -78,12 +95,6 @@
 <script type="text/javascript" src="../../script/common.js"></script>
 <script type="text/javascript">
     apiready = function () {
-        // if (api.pageParam.flag == 1) {
-        //     $api.text($api.dom('.winTitle'), '二度好友');
-        // } else if (api.pageParam.flag == 2) {
-        //     $api.text($api.dom('.winTitle'), '尚未加入');
-
-        // }
         moduleInit();
         fnInit();
         // 新建表格
@@ -93,7 +104,7 @@
             url: 'detail.html',
             rect: {
                 x: 0,
-                y: headerH,
+                y: $api.dom('header').offsetHeight,
                 w: 'auto',
                 h: 'auto'
             },

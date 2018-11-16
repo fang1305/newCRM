@@ -7,95 +7,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../css/api.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/custom.css" />
     <style>
         .main{
-            font-size: .3rem;
-            padding: .1rem 3%;
-            background: #fff;
+            font-size: 0;
         }
         .search{
-            width: 100%;
+            width: 94%;
             height: .88rem;
-            /* background: red; */
             display: block;
             padding: .1rem 0;
             box-sizing: border-box;
-            position: relative;
+            position: absolute;
+            top: .05rem;
+            left: 3%;
         }
         .search input{
             width: 100%;
-            border: 1px solid #999;
-            height: .68rem;
+            border: none;
+            background: rgba(242,242,242,0.4);
+            height: .58rem;
+            font-size: .28rem;
+            color: #fff;
             border-radius: 100px;
-            padding-left: .2rem;
+            padding-left: .88rem;
             box-sizing: border-box;
+        }
+        .search input::-webkit-input-placeholder{
+            color: #fff;
         }
         .search img{
             width: .4rem;
             height: .4rem;
             position: absolute;
-            top: .24rem;
-            right: .4rem;
+            top: .19rem;
+            left: .2rem;
         }
         .content {
+            font-size: .28rem;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
         }
         .content .typeList{
-            width: 47%;
+            text-align: center;
+            flex: 1;
             margin: .3rem 0;
             height: 1.6rem;
-            background: rgb(78, 162, 245);
             border-radius: .4rem;
-            color: #fff;
+            color: #666;
             padding: .1rem;
             box-sizing: border-box;
+            position: relative;
         }
-        .list .title{
-            height: .88rem;
-            width: 100%;
-            line-height: .88rem;
-            display: flex;
-        }
-        .list .title h3{
-            flex: 1;
-            font-size: .36rem;
-            font-weight: 600;
-        }
-        .list .title a{
-            font-size: .24rem;
-            color: #666;
-            text-decoration: none;
-        }
-        /* .list .title:before{
-            content: "";
-            height: .4rem;
-            width: .05rem;
-            background: #3699FF;
+        .content .typeList:nth-child(2):before{
+            content: '';
+            width: 1px;
             position: absolute;
+            top: 0;
+            bottom: 0;
+            background: rgba(0,0,0,.1);
             left: 0;
-        } */
+        }
+        .content .typeList .count{
+            font-size: .43rem;
+            color: #3699FF;
+            font-weight: 600;
+            padding-bottom: .3rem;
+        }
+        .content .typeList .monthCount{
+            color: #1AAD19;
+        }
+        .banner{
+            width: 100%;
+            height: 3.52rem;
+        }
+        .bg_f{
+            background: #fff;
+        }
+        .text_right{
+            text-align: right;
+        }
+        
     </style>
 </head>
 <body>
     <div class="main">
+        <img src="../image/banner.png" class="banner" /> 
         <div class="search">
             <input type="text" placeholder="请输入检索信息" />
             <img src="../image/main/search.png" />
         </div>
-        <div class="content">
+        <div class="content bg_f">
             <div class="typeList">
-                潜在用户
+                <p class="count monthCount">5649名</p>
+                <p>本月新增客户</p>
             </div>
             <div class="typeList">
-                产品管理
+                <p class="count">5649名</p>
+                <p>潜在客户总计</p>
             </div>
         </div>
-        <div class="list">
+        <div class="listBox bg_f">
             <div class="title">
                 <h3>客户管理</h3>
-                <a href="##" class="more">查看更多</a>
+                <a href="##" onclick="openWin('customer','customer/customer.html')" class="more">查看更多</a>
+                <img src="../image/icon_next.png" />
+            </div>
+            <div class="customer flex-box flex-cCenter">
+                <img class="logo" src="../image/market/login-bg.jpg" />
+                <div class="detail">
+                    <h3 class="fs_36 name">
+                        王姓名<span class="tagsName">宣传大使</span>
+                    </h3>
+                    <p class="tags fs_32">13029388893</p>
+                    <span class="morePart">日期: 2018-09-39</span>
+                    <span>类型: 黄金会员</span>
+                    <span class="morePart">服务: 张建成</span>
+                    <span>积分: 338</span>
+                    <p>地址: 河北省衡水市饶阳</p>
+                </div>
+            </div>
+            <div class="customer flex-box flex-cCenter">
+                <img class="logo" src="../image/market/login-bg.jpg" />
+                <div class="detail">
+                    <h3 class="fs_36 name">王姓名</h3>
+                    <p class="tags fs_32">13029388893</p>
+                    <span class="morePart">日期: 2018-09-39</span>
+                    <span>类型: 黄金会员</span>
+                    <span class="morePart">服务: 张建成</span>
+                    <span>积分: 338</span>
+                    <p>地址: <span>河北省衡水市饶阳县留楚想吸毒案存388号</span></p>
+                </div>
+            </div>
+            <div class="customer flex-box flex-cCenter">
+                <img class="logo" src="../image/market/login-bg.jpg" />
+                <div class="detail">
+                    <h3 class="fs_36 name">王姓名</h3>
+                    <p class="tags fs_32">13029388893</p>
+                    <span class="morePart">日期: 2018-09-39</span>
+                    <span>类型: 黄金会员</span>
+                    <span class="morePart">服务: 张建成</span>
+                    <span>积分: 338</span>
+                    <p>地址: <span>河北省衡水市饶阳县留楚想吸毒案存388号</span></p>
+                </div>
             </div>
         </div>
 

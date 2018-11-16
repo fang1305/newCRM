@@ -42,3 +42,12 @@ function  closeFrame(name) {
         name: name
     });
 }
+//打开window
+function  openWin(name,url) {
+    api.openWin({
+        name: name,
+        url: url,
+        pageParam: {
+        }
+    });
+}

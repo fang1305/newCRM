@@ -1,0 +1,119 @@
+ .listBox {
+     margin-top: .2rem;
+     font-size: .28rem;
+     padding-left: .3rem;
+ }
+
+ .listBox .title {
+     height: .88rem;
+     width: 100%;
+     line-height: .88rem;
+     display: flex;
+ }
+
+ .listBox .title h3 {
+     flex: 1;
+     font-size: .36rem;
+     font-weight: 600;
+ }
+
+ .listBox .title a {
+     font-size: .24rem;
+     color: #666;
+     text-decoration: none;
+ }
+ .listBox .title img {
+     width: .3rem;
+     height: .3rem;
+     margin-top: .28rem;
+ }
+.listBox .customer {
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid #f0f0f0;
+    padding: .2rem .15rem .2rem 0rem;
+}
+
+.listBox .customer img.logo {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 1rem;
+    margin-right: .05rem;
+}
+
+.listBox .customer .detail {
+    padding-left: .15rem;
+    flex: 1;
+    box-sizing: border-box;
+}
+.listBox .customer .detail .tags{
+    position: absolute;
+    top: .25rem;
+    right: .2rem;
+    color: #F76360;
+}
+.listBox .customer .detail span.tagsName{
+    font-size: .18rem;
+    line-height: .24rem;
+    border: 1px solid #3699FF;
+    border-radius: .08rem;
+    color: #3699FF;
+    height: .28rem;
+    padding: .03rem 0.04rem 0;
+    margin-left: .05rem;
+    position: absolute;
+    top: .31rem;
+}
+.listBox .customer .detail span{
+    font-size: .26rem;
+    line-height: .45rem;
+    display: inline-block;
+}
+.listBox .customer .detail span.morePart{
+    width: 55%;
+}
+.listBox .customer .name {
+    line-height: .5rem;
+    margin-bottom: .1rem;
+}
+
+/* .listBox .customer .tags {
+    background: url(../image/market/icon_phone.png) no-repeat;
+    background-size: .3rem;
+    background-position: 0px .1rem;
+    padding-left: .4rem;
+} */
+
+
+.listBox .customer .more {
+    height: 1.5rem;
+    width: 1rem;
+    margin-left: .3rem;
+    margin-right: .1rem;
+}
+
+.listBox .customer .more .btn {
+    width: 100%;
+    text-align: center;
+    height: .55rem;
+    margin: .1rem 0;
+    line-height: .55rem;
+    color: #fff;
+    font-size: .24rem;
+    border: none;
+    border-radius: 3px;
+}
+
+.listBox .customer .more .yesBtn {
+    background: #3699FF;
+}
+
+.listBox .customer .more .noBtn {
+    background: red;
+}
+
+.listBox .customer .more img {
+    width: .8rem;
+    height: auto;
+    margin-top: .6rem;
+}

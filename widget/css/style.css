@@ -25,3 +25,25 @@
 .fs_28 {
     font-size: .28rem;
 }
+.titleType {
+    height: .88rem;
+    width: 100%;
+    line-height: .88rem;
+    display: flex;
+    padding: 0 0.15rem 0 .3rem;
+    align-items: center;
+}
+.titleType h3 {
+    flex: 1;
+    font-size: .36rem;
+    font-weight: 600;
+}
+
+.titleType a {
+    font-size: .24rem;
+    color: #666;
+    text-decoration: none;
+}
+.titleType img{
+    height: 0.28rem;
+}
