@@ -1,0 +1,801 @@
+<template>
+    <div class="componentsRoot clueWrap">
+
+        <div>
+            <!-- 数据表格 -->
+            <el-breadcrumb separator="/">
+                <el-breadcrumb-item v-for="(item,index) in tabObj"><span @click="tabFun(item.id,index)">{{ item.name }}</span></el-breadcrumb-item>
+            </el-breadcrumb>
+            <div class="tableTitle">
+                <el-row>
+                    <el-col :span="12">
+                        <el-button type="text" @click="importStatu=true">上传文件</el-button>
+                        <el-button type="text" @click="folderStatu=true">新建文件夹</el-button>
+                        <el-button type="text" @click="delStatu=true">批量删除</el-button>
+                        <el-button type="text" @click="treeStatu=true">批量转移</el-button>
+                    </el-col>
+                    <el-col :span="8" :offset="4">
+                        <el-input placeholder="请输入内容" v-model="searchIptValue" class="input-with-select">
+                            <el-select v-model="optionsValue" slot="prepend" placeholder="请选择">
+                                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                                </el-option>
+                            </el-select>
+                            <el-button slot="append" @click="filterClue" icon="el-icon-search"></el-button>
+                        </el-input>
+                    </el-col>
+                </el-row>
+            </div>
+            <template>
+                <div>
+                    <el-table :data="tableData" tooltip-effect="dark" style="width: 100%" border ref="multipleTable"
+                        @selection-change="handleSelectionChange">
+                        <el-table-column type="selection" width="55">
+                        </el-table-column>
+                        <el-table-column label="文件名" prop="file_name" sortable align="center" show-overflow-tooltip
+                            min-width="130">
+                            <template slot-scope="scope">
+                                <a v-if="scope.row.file_type == 1 && judgeType(scope.row.file_name)" :href="readHref+scope.row.id"
+                                    target="_blank" class="colorBlue">
+                                    <img src="../../../images/file.png" alt="">
+                                    <span>{{ scope.row.file_name }}</span>
+                                </a>
+                                <a v-else-if="scope.row.file_type == 1" :href="scope.row.file" target="_blank" class="colorBlue">
+                                    <img src="../../../images/file.png" alt="">
+                                    <span>{{ scope.row.file_name }}</span>
+                                </a>
+                                <div v-if="scope.row.file_type == 2" @click="tabFun(scope.row,-1)" target="_blank"
+                                    class="colorBlue">
+                                    <img src="../../../images/folder.png" alt="">
+                                    <span>{{ scope.row.file_name }}</span>
+                                </div>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="user_name" label="用户名" sortable align="center" min-width="120"
+                            show-overflow-tooltip>
+                        </el-table-column>
+                        <el-table-column prop="create_time" label="上传时间" sortable min-width="120" align="center"
+                            show-overflow-tooltip>
+                        </el-table-column>
+                        <!-- <el-table-column
+                            label="操作"
+                            align="center"
+                            width="180"
+                        >
+                            <template slot-scope="scope">
+                                <el-button
+                                    size="mini"
+                                    @click="showModelTable(scope.$index, scope.row, 'handover')">交接
+                                </el-button>
+                                <el-button
+                                    size="mini"
+                                    type="danger"
+                                    @click="showModelTable(scope.$index, scope.row, 'deleteBtn')">删除
+                                </el-button>
+                            </template>
+                        </el-table-column> -->
+                    </el-table>
+                </div>
+                <div v-if="all_page>0" class="block mt10 flex-def flex-zCenter">
+                    <el-pagination @size-change="handSizeChange" @current-change="handCurrentChange" layout="prev, pager, next"
+                        :page-size='20' background :total='all_page'>
+                    </el-pagination>
+                </div>
+            </template>
+        </div>
+        <!-- 新建文件夹 -->
+        <el-dialog title="新建文件夹" :visible.sync="folderStatu" width="30%">
+            <div style="width:100%">
+                <span class="iptName">文件夹名称:</span>
+                <el-input v-model="paramFolder.dir_name" placeholder="请输入文件夹名称"></el-input>
+            </div>
+            <div style="width:100%">
+                <span class="iptName">是否公开:</span>
+                <el-select v-model="paramFolder.is_open" @change="typeChange()" placeholder="请选择">
+                    <el-option v-for="item in isopen" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                </el-select>
+            </div>
+            <div style="width:100%" class="listBox" v-if="paramFolder.is_open>2">
+                <span class="iptName">请选择{{ typeselect }}:</span>
+                <el-select multiple v-model="selectall" filterable collapse-tags placeholder="请选择">
+                    <template>
+                        <div class="chooseBox">
+                            <div class="allClick" @click="clickSelect(0,1)">全选</div>
+                            <div class="allClick" @click="clickSelect(1,1)">反选</div>
+                        </div>
+                    </template>
+                    <el-option v-for="item in select" :key="item.id" :label="item.name" :value="item.id">
+                    </el-option>
+                </el-select>
+            </div>
+            <div style="width:100%" class="listBox" v-if="paramFolder.is_open>1&&selectTraders.length>0">
+                <span class="iptName">请选择加盟商:</span>
+                <el-select multiple v-model="selectAllTraders" collapse-tags placeholder="请选择">
+                    <template>
+                        <div class="chooseBox">
+                            <div class="allClick" @click="clickSelect(0,0)">全选</div>
+                            <div class="allClick" @click="clickSelect(1,0)">反选</div>
+                        </div>
+                    </template>
+                    <el-option v-for="item in selectTraders" :key="item.apply_company_id" :label="item.apply_company_name"
+                        :value="item.apply_company_id">
+                    </el-option>
+                </el-select>
+            </div>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="folderStatu = false">取 消</el-button>
+                <el-button type="primary" @click="uploadFolder">确 定</el-button>
+            </span>
+        </el-dialog>
+        <!-- 导入文件 -->
+        <el-dialog title="上传数据文件" :visible.sync="importStatu" width="30%">
+            <div style="width:100%">
+                <span class="iptName">是否公开:</span>
+                <el-select v-model="paramObj.is_open" @change="typeChange()" placeholder="请选择">
+                    <el-option v-for="item in isopen" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                </el-select>
+            </div>
+            <div style="width:100%" class="listBox" v-if="paramObj.is_open>2">
+                <span class="iptName">请选择{{ typeselect }}:</span>
+                <el-select multiple v-model="selectall" filterable collapse-tags placeholder="请选择">
+                    <template>
+                        <div class="chooseBox">
+                            <div class="allClick" @click="clickSelect(0,1)">全选</div>
+                            <div class="allClick" @click="clickSelect(1,1)">反选</div>
+                        </div>
+                    </template>
+                    <el-option v-for="item in select" :key="item.id" :label="item.name" :value="item.id">
+                    </el-option>
+                </el-select>
+            </div>
+            <div style="width:100%" class="listBox" v-if="paramObj.is_open>1&&selectTraders.length>0">
+                <span class="iptName">请选择加盟商:</span>
+                <el-select multiple v-model="selectAllTraders" collapse-tags placeholder="请选择">
+                    <template>
+                        <div class="chooseBox">
+                            <div class="allClick" @click="clickSelect(0,0)">全选</div>
+                            <div class="allClick" @click="clickSelect(1,0)">反选</div>
+                        </div>
+                    </template>
+                    <el-option v-for="item in selectTraders" :key="item.apply_company_id" :label="item.apply_company_name"
+                        :value="item.apply_company_id">
+                    </el-option>
+                </el-select>
+            </div>
+            <el-upload class="upload-demo" action="https://server.crm.imgaozhao.com/api/UserFile/uploadExcel" ref="upload"
+                :auto-upload="false" :on-preview="handlePreview" :on-remove="handleRemove" :before-remove="beforeRemove"
+                :data="paramObj" name="file" :limit="3" multiple :on-success="uploadSuccess" :on-error="handError">
+                <!-- :file-list="fileList"> -->
+                <el-button type="text">点击添加数据文件</el-button>
+                <div slot="tip" class="el-upload__tip">只能上传excel文件</div>
+            </el-upload>
+
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="importStatu = false">取 消</el-button>
+                <el-button type="primary" @click="uploadFlie">确 定</el-button>
+            </span>
+        </el-dialog>
+        <!-- 转移文件 -->
+        <el-dialog title="转移文件" :visible.sync="treeStatu" width="40%">
+            <div style="width:100%" class="listBox">
+                <el-tree :props="props1" :load="loadNode1" lazy node-key="id">
+                    <span v-if="node.file_type == 1" class="custom-tree-node" slot-scope="{ node, data }">
+                        <img src='../../../images/folder.png' class="folderImg" />
+                        <span>{{ node.label }}</span>
+                    </span>
+                </el-tree>
+            </div>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="importStatu = false">取 消</el-button>
+                <el-button type="primary" @click="uploadFlie">确 定</el-button>
+            </span>
+        </el-dialog>
+
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "clue",
+        data() {
+            return {
+                props1: {
+                    label: 'file_name',
+                    children: 'zones',
+                    isLeaf: 'leaf'
+                },
+                page_num: 1,
+                all_page: 0,
+                tabObj: [{
+                    id: "0",
+                    name: "共享文件"
+                }],
+                file_id: 0,
+                readHref: "",
+                props: {
+                    label: "name",
+                    value: 'id'
+                },
+                // 数据权限
+                role_data_auth: localStorage.getItem('role_data_auth'),
+
+                // 表格数据
+                tableData: [],
+                typeselect: '',
+                select: [],
+                selectall: [],
+                selectDepartment: [],
+                selectUser: [],
+                selectTraders: [],
+                selectAllTraders: [],
+                paramObj: {
+                    token: localStorage.getItem("crm_token")
+                },
+                paramFolder: {
+                    token: localStorage.getItem("crm_token")
+                },
+                options: [{
+                        label: "创建者",
+                        value: 1
+                    },
+                    {
+                        label: "文件名",
+                        value: 2
+                    }
+                ],
+                isopen: [{
+                    value: "1",
+                    label: "公开"
+                }, {
+                    value: "2",
+                    label: "公司"
+                }, {
+                    value: "3",
+                    label: "部门"
+                }, {
+                    value: "4",
+                    label: "员工"
+                }],
+                // 搜索框筛选列表
+                optionsValue: 1,
+                // 搜索框内容
+                searchIptValue: "",
+                // 范围选中内容 
+                selectRangeItem: '',
+                importStatu: false,
+                folderStatu: false,
+                // 转移的box
+                treeStatu: false,
+                leafData: []
+            };
+        },
+        methods: {
+            handleSelectionChange() {},
+            loadNode1(node, resolve) {
+                let self = this;
+                if (node.level === 0) {
+                    this.getTreeFile(0, resolve)
+
+                } else {
+                    this.getTreeFile(node.data.id, resolve)
+                }
+                // if (node.level > 1) return resolve([]);
+
+                // setTimeout(() => {
+                //   const data = [{
+                //     name: 'leaf',
+                //     leaf: true
+                //   }, {
+                //     name: 'zone'
+                //   }];
+
+                //   resolve(data);
+                // }, 500);
+            },
+            getTreeFile(num, resolve) {
+                let self = this;
+                self
+                    .$axios({
+                        method: "POST",
+                        withCredentials: false,
+                        url: "/api/UserFile/getChildFile",
+                        data: {
+                            "fileId": num
+                        }
+                    })
+                    .then(function (res) {
+                        console.log(JSON.stringify(res))
+                        console.log(res.data.code)
+                        if (res.data.code == 200) {
+                            self.leafData = res.data.data;
+                            let arr = self.leafData;
+                            for (var i = 0; i < arr.length; i++) {
+                                arr[i].file_type == 1 ? arr[i].leaf = true : arr[i].leaf = false;
+                            }
+                            console.log(arr)
+                            console.log('测试数组')
+                            return resolve(arr);
+                        }
+                        //   if (res.data.code === 200) {
+                        //     self.$message({
+                        //         message: '添加成功',
+                        //         type: 'success'
+                        //     });
+                        //     self.folderStatu = false;
+                        //     self.paramFolder = {
+                        //         token:localStorage.getItem("crm_token")
+                        //     }
+                        //     self.filterClue();
+                        //   } else {
+                        //     self.$message.error(res.data.msg);if (res.data.code == 10008) {self.$router.push('/login');};
+                        //   }
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+            },
+            handSizeChange(page) {},
+            handCurrentChange(page) {
+                console.log(page);
+
+                this.page_num = page;
+                this.filterClue();
+            },
+            judgeType(value) {
+                var i = value.lastIndexOf(".");
+                if (i > -1 && (value.substring(i) == '.xlsx' || value.substring(i) == '.xls')) {
+                    return true;
+                } else {
+                    return false
+                }
+            },
+            uploadFolder() {
+                // 新建文件夹
+                this.paramFolder.is_open == 2 ? this.paramFolder.company_id = localStorage.getItem('motherCompanyId') :
+                    this.paramFolder.company_id = '';
+                this.paramFolder.is_open == 3 ? this.paramFolder.department_ids = this.selectall + '' : this.paramFolder
+                    .department_ids = '';
+                this.paramFolder.is_open == 4 ? this.paramFolder.user_ids = this.selectall + '' : this.paramFolder.user_ids =
+                    '';
+                this.paramFolder.franchiser_ids = this.selectAllTraders + '';
+                this.paramFolder.type = 2;
+                this.paramFolder.pid = this.file_id;
+                console.log("上传数据:" + JSON.stringify(this.paramFolder, null, 4));
+                let self = this;
+                self
+                    .$axios({
+                        method: "POST",
+                        withCredentials: false,
+                        url: "/api/UserFile/uploadExcel",
+                        data: this.paramFolder
+                    })
+                    .then(function (res) {
+                        console.log(JSON.stringify(res))
+                        if (res.data.code === 200) {
+                            self.$message({
+                                message: '添加成功',
+                                type: 'success'
+                            });
+                            self.folderStatu = false;
+                            self.paramFolder = {
+                                token: localStorage.getItem("crm_token")
+                            }
+                            self.filterClue();
+                        } else {
+                            self.$message.error(res.data.msg);
+                            if (res.data.code == 10008) {
+                                self.$router.push('/login');
+                            };
+                        }
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+            },
+            uploadFlie() {
+                this.paramObj.is_open == 2 ? this.paramObj.company_id = localStorage.getItem('motherCompanyId') : this.paramObj
+                    .company_id = '';
+                this.paramObj.is_open == 3 ? this.paramObj.department_ids = this.selectall + '' : this.paramObj.department_ids =
+                    '';
+                this.paramObj.is_open == 4 ? this.paramObj.user_ids = this.selectall + '' : this.paramObj.user_ids = '';
+                this.paramObj.franchiser_ids = this.selectAllTraders + '';
+                this.paramObj.pid = this.file_id;
+                this.paramObj.type = 1;
+                console.log("上传数据:" + JSON.stringify(this.paramObj, null, 4));
+                this.$refs.upload.submit();
+                console.log("--------------------")
+            },
+            // 上传成功
+            uploadSuccess(response, file, fileList) {
+                console.log("--------------成功----------");
+                console.log(response);
+                //   console.log(JSON.stringify(this.paramObj));
+                var data = response.data;
+                //   console.log(file);
+                //   console.log(fileList);
+                console.log("--------------成功----------");
+
+                this.importStatu = false;
+
+                if (data.length > 0) {
+                    setTimeout(() => {
+                        this.$message({
+                            message: "部分导入成功, 重复数据" + data.toString() + "未导入成功",
+                            type: "success"
+                        });
+                    }, 1000);
+                } else {
+                    this.$message({
+                        message: "导入成功",
+                        type: "success"
+                    });
+                }
+                // 删除上传文件的列表
+                this.$refs.upload.clearFiles();
+                this.paramObj = {
+                    token: localStorage.getItem("crm_token")
+                };
+                this.filterClue();
+            },
+            //    变化后
+            handChange(file, fileList) {
+                // console.log('-------------------------变化后---------------------------------------');
+                // console.log(JSON.stringify(file));
+                // console.log(JSON.stringify(fileList, null, 4));
+                // console.log('-------------------------变化后---------------------------------------');
+            },
+            // 删除前
+            handleRemove(file, fileList) {
+                //     console.log('-------------------------删除前---------------------------------------');
+                // console.log(file, fileList);
+                //     console.log('-------------------------删除前---------------------------------------');
+            },
+            // 拿到服务器返回的数据
+            handlePreview(file) {
+                console.log('-------------------------服务器返回---------------------------------------');
+                console.log(file);
+                console.log('-------------------------服务器返回---------------------------------------');
+            },
+            // 错误
+            handError(err, file, fileList) {
+                console.log('-------------------------错误---------------------------------------');
+                // console.log(err);
+                console.log(file);
+                console.log(fileList);
+                console.log('-------------------------错误---------------------------------------');
+            },
+            // 超出数量
+            handleExceed(files, fileList) {
+                this.$message.warning(
+                    `当前限制选择 3 个文件，本次选择了 ${
+          files.length
+        } 个文件，共选择了 ${files.length + fileList.length} 个文件`
+                );
+            },
+            // 删除前
+            beforeRemove(file, fileList) {
+                return this.$confirm(`确定移除 ${file.name}？`);
+            },
+            tabFun(obj, type) {
+                console.log(type)
+                if (type == -1) {
+                    // 添加
+                    this.tabObj.push({
+                        "id": obj.id,
+                        "name": obj.file_name
+                    })
+                    this.file_id = obj.id;
+                } else {
+                    console.log((type + 1) + '==' + (this.tabObj.length - type - 1))
+                    this.tabObj.splice((type + 1), (this.tabObj.length - type - 1))
+                    this.file_id = obj;
+                }
+                this.filterClue()
+            },
+            filterClue() {
+                console.log("筛选表格数据");
+                // 筛选表格数据
+                // console.log(this.clueType)
+                let self = this;
+                let children_id;
+                let obj = {
+                    token: localStorage.getItem("crm_token"),
+                    name: self.optionsValue == 2 ? self.searchIptValue : '',
+                    user_name: self.optionsValue == 1 ? self.searchIptValue : '',
+                    page_num: self.page_num + '',
+                    pid: self.file_id
+                };
+
+                console.log("请求参数:" + JSON.stringify(obj, null, 4));
+                self
+                    .$axios({
+                        method: "POST",
+                        withCredentials: false,
+                        url: "/api/UserFile/getFileLists",
+                        data: obj
+                    })
+                    .then(function (res) {
+                        console.log(JSON.stringify(res))
+                        if (res.data.code === 200) {
+                            for (var i = 0; i < res.data.data.list.length; i++) {
+                                for (let key in obj) {
+                                    if (obj[key] == null) {
+                                        obj[key] = "-";
+                                    }
+                                }
+                            }
+                            self.tableData = res.data.data.list;
+                            self.all_page = res.data.data.count;
+                        } else {
+                            self.$message.error(res.data.msg);
+                            if (res.data.code == 10008) {
+                                self.$router.push('/login');
+                            };
+                        }
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+            },
+            getDepartment() {
+                let self = this;
+                self
+                    .$axios({
+                        method: "POST",
+                        withCredentials: false,
+                        url: "/api/Company/companyDepartment",
+                        data: {
+                            "token": localStorage.getItem("crm_token")
+                        }
+                    })
+                    .then(function (res) {
+                        console.log(JSON.stringify(res))
+                        if (res.data.code === 200) {
+                            self.selectDepartment = res.data.data.list;
+                        } else {
+                            self.$message.error(res.data.msg);
+                            if (res.data.code == 10008) {
+                                self.$router.push('/login');
+                            };
+                        }
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+            },
+            getUser() {
+                let self = this;
+                self
+                    .$axios({
+                        method: "POST",
+                        withCredentials: false,
+                        url: "/api/Company/companyUser",
+                        data: {
+                            "token": localStorage.getItem("crm_token")
+                        }
+                    })
+                    .then(function (res) {
+                        console.log(JSON.stringify(res))
+                        if (res.data.code === 200) {
+                            self.selectUser = res.data.data.list;
+                        } else {
+                            self.$message.error(res.data.msg);
+                            if (res.data.code == 10008) {
+                                self.$router.push('/login');
+                            };
+                        }
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+            },
+            typeChange() {
+                let self = this;
+                self.selectall = [];
+                if (self.paramObj.is_open == 3 || self.paramFolder.is_open == 3) {
+                    // 部门
+                    self.select = self.selectDepartment
+                    self.typeselect = '部门'
+                } else if (self.paramObj.is_open == 4 || self.paramFolder.is_open == 4) {
+                    self.select = self.selectUser;
+                    self.typeselect = '员工'
+                } else {
+                    self.select = [];
+                }
+            },
+            clickSelect(num, type) {
+                // 全选和反选
+                // selectAllTraders
+                let self = this;
+                if (num == 0) {
+                    // 全选
+                    type == 1 ? self.selectall = [] : self.selectAllTraders = [];
+                    if (type == 1) {
+                        for (var item of self.select) {
+                            self.selectall.push(item.id)
+                        }
+                    } else {
+                        for (var item of self.selectTraders) {
+                            self.selectAllTraders.push(item.apply_company_id)
+                        }
+                    }
+
+                } else {
+                    // 反选
+                    let arr = [];
+                    if (type == 1) {
+                        for (var item of self.select) {
+                            self.selectall.indexOf(item.id) == -1 ? arr.push(item.id) : ''
+                        }
+                        self.selectall = arr;
+                    } else {
+                        for (var item of self.selectTraders) {
+                            self.selectAllTraders.indexOf(item.apply_company_id) == -1 ? arr.push(item.apply_company_id) :
+                                ''
+                        }
+                        self.selectAllTraders = arr;
+                    }
+
+                }
+            },
+            getTraders() {
+                let self = this;
+                self
+                    .$axios({
+                        method: "POST",
+                        withCredentials: false,
+                        url: "/api/joiningTrader/FranchiseeMyListId",
+                        data: {
+                            "token": localStorage.getItem("crm_token"),
+                            "company_id": localStorage.getItem('chirdrenCompanyId')
+                        }
+                    })
+                    .then(function (res) {
+                        console.log(JSON.stringify(res))
+                        if (res.data.code === 200) {
+                            self.selectTraders = res.data.data.list;
+                        } else {
+                            self.$message.error(res.data.msg);
+                            if (res.data.code == 10008) {
+                                self.$router.push('/login');
+                            };
+                        }
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+
+            }
+        },
+        created() {
+            let hrefR = window.location.href + "";
+            this.readHref = "http://" + hrefR.split('/')[2] + "/read.html?id=";
+            this.filterClue();
+            this.getDepartment();
+            this.getUser();
+            if (localStorage.getItem('role_opat_auth').split(',').includes('49')) {
+                //   获取加盟商
+                this.getTraders();
+            } else {
+                //   没有该权限
+                this.selectTraders = [];
+            }
+        }
+    };
+</script>
+<style scoped>
+    @import "css/clue.css";
+
+    .leftWrap,
+    .rightWrap {
+        line-height: 40px;
+        height: 40px;
+    }
+
+    .el-row {
+        margin: 5px 0;
+    }
+
+    /* 省市区选着器 */
+    .el-cascader {
+        width: 95%;
+    }
+
+    /* 新增线索选着 */
+    .dialogWrap .el-cascader {
+        width: 100%;
+    }
+
+    .wrap {
+        border: 1px solid #d9d9d9;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .tableTitle {
+        margin-bottom: 10px;
+        padding: 10px 0;
+    }
+
+    .el-button i {
+        width: 100%;
+        height: 100%;
+    }
+
+    .iptName {
+        display: inline-block;
+        margin: 5px 0;
+    }
+
+    .colorBlue {
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+    }
+
+    .colorBlue span {
+        vertical-align: middle;
+    }
+
+    .colorBlue img {
+        height: 25px;
+        vertical-align: middle;
+    }
+
+    .select .el-select {
+        width: 90%;
+    }
+
+    .clueWrap {
+        padding-left: 1px;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .chooseBox {
+        display: flex;
+        width: 100%;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #f0f0f0;
+        cursor: pointer;
+    }
+
+    .allClick {
+        flex: 1;
+        text-align: center;
+        line-height: 35px;
+        color: #666;
+    }
+
+    .allClick:hover {
+        color: #3699FF;
+    }
+
+    .allClick:nth-child(1) {
+        border-right: 1px solid #f0f0f0;
+    }
+
+    .folderImg {
+        width: 22px;
+        vertical-align: middle;
+    }
+</style>
+<style>
+    .listBox .el-select .el-tag {
+        line-height: 28px !important;
+        height: 28px !important;
+    }
+
+    .listBox .el-select__tags {
+        max-height: 104px;
+        overflow: auto;
+    }
+</style>

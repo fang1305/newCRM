@@ -47,3 +47,12 @@
 .titleType img{
     height: 0.28rem;
 }
+.pos_re{
+    position: relative;
+}
+.pos_ab{
+    position: absolute;
+}
+.text_left {
+    text-align: left;
+}

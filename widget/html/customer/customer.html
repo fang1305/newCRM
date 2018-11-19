@@ -6,7 +6,9 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
     <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/weui.css" />
     <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
     <style>
         .main {
             padding: 0 .3rem;
@@ -45,21 +47,40 @@
             display: inline-block;
             position: absolute;
             right: 0;
-            width: .39rem;
+            width: .4rem;
             height: .8rem;
             background: url(../../image/icon_addF.png)no-repeat;
-            -webkit-background-size: .39rem .3rem;
-            background-size: .39rem .3rem;
+            -webkit-background-size: .4rem .4rem;
+            background-size: .4rem .4rem;
             background-position: 0 center;
             float: right;
-            margin-right: .28rem;
+            margin-right: .2rem;
         }
         .chooseType li{
             font-size: .28rem;
             flex: 1;
         }
-        .chooseType li:before{
-            
+        .weui-cells:before{
+            border: none
+        }
+        .chooseType li .weui-cells{
+            left: 0;
+            right: 0;
+            top: .8rem;
+        }
+        .chooseType li img{
+            background: url(../../image/icon_down.png);
+            width: .2rem;
+            height: .1rem;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            vertical-align: middle;
+        }
+        .chooseType li img.activeImg,.chooseType li.active img.downImg{
+            display: none;
+        }
+        .chooseType li img.downImg,.chooseType li.active img.activeImg{
+            display: inline-block;
         }
         .chooseType{
             height: .8rem;line-height: .4rem;background: #FCFCFC;text-align: center;
@@ -78,15 +99,54 @@
                 返回
             </span>
             <span class="winTitle">
-                二度人脉
+                所有客户
             </span>
             <span class="rightBtn" tapmode onclick="addF()"></span>
         </div>
-        <ul class="chooseType flex-box">
-            <li>会员类型</li>
-            <li>会员类型</li>
-            <li>排序</li>
-            <li>筛选</li>
+        <ul class="chooseType flex-box pos_re" >
+            <li>
+                <span>客户类型</span>
+                <img src="../../image/icon_down.png" class="downImg" />
+                <img src="../../image/icon_up.png" class="activeImg" />
+                <div class="weui-cells weui-cells_radio pos_ab">
+                    <label class="weui-cell weui-check__label text_left" for="x11">
+                        <div class="weui-cell__bd">潜在客户</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="radio1" id="x11"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left" for="x12">
+                        <div class="weui-cell__bd">潜在客户</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="radio1" id="x12"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left" for="x13">
+                        <div class="weui-cell__bd">潜在客户</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="radio1" id="x13"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                </div>
+            </li>
+            <li>
+                <span>客户级别</span>
+                <img src="../../image/icon_down.png" class="downImg" />
+                <img src="../../image/icon_up.png" class="activeImg" />
+            </li>
+            <li>
+                <span>排序</span>
+                <img src="../../image/icon_down.png" class="downImg" />
+                <img src="../../image/icon_up.png" class="activeImg" />
+            </li>
+            <li>
+                <span>筛选</span>
+                <img src="../../image/icon_down.png" class="downImg" />
+                <img src="../../image/icon_up.png" class="activeImg" />
+            </li>
         </ul>
     </header>
 

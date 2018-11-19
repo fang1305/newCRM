@@ -117,10 +117,10 @@ header .callback {
     box-sizing: border-box;
     position: absolute;
     background: url(../image/icon_fanh.png)no-repeat;
-    -webkit-background-size: .22rem .37rem;
-    background-size: .22rem .37rem;
+    -webkit-background-size: .32rem .29rem;
+    background-size: .32rem .29rem;
     background-position: 0 center;
-    left: .3rem;
+    left: .2rem;
     top: 0;
     padding: 0.2rem .3rem;
 }
