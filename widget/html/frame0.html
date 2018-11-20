@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>首页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/weui.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="../css/api.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="../css/custom.css" />
@@ -114,42 +115,44 @@
                 <a href="##" onclick="openWin('customer','customer/customer.html')" class="more">查看更多</a>
                 <img src="../image/icon_next.png" />
             </div>
-            <div class="customer flex-box flex-cCenter">
-                <img class="logo" src="../image/market/login-bg.jpg" />
-                <div class="detail">
-                    <h3 class="fs_36 name">
-                        王姓名<span class="tagsName">宣传大使</span>
-                    </h3>
-                    <p class="tags fs_32">13029388893</p>
-                    <span class="morePart">日期: 2018-09-39</span>
-                    <span>类型: 黄金会员</span>
-                    <span class="morePart">服务: 张建成</span>
-                    <span>积分: 338</span>
-                    <p>地址: 河北省衡水市饶阳</p>
+            <div class="customerList">
+                <div class="customer flex-box flex-cCenter" onclick="openDetail(12)">
+                    <img class="logo" src="../image/market/login-bg.jpg" />
+                    <div class="detail">
+                        <h3 class="fs_36 name">
+                            王姓名<span class="tagsName">宣传大使</span>
+                        </h3>
+                        <p class="tags fs_32">13029388893</p>
+                        <span class="morePart">日期: 2018-09-39</span>
+                        <span>类型: 黄金会员</span>
+                        <span class="morePart">服务: 张建成</span>
+                        <span>积分: 338</span>
+                        <p>地址: 河北省衡水市饶阳</p>
+                    </div>
                 </div>
-            </div>
-            <div class="customer flex-box flex-cCenter">
-                <img class="logo" src="../image/market/login-bg.jpg" />
-                <div class="detail">
-                    <h3 class="fs_36 name">王姓名</h3>
-                    <p class="tags fs_32">13029388893</p>
-                    <span class="morePart">日期: 2018-09-39</span>
-                    <span>类型: 黄金会员</span>
-                    <span class="morePart">服务: 张建成</span>
-                    <span>积分: 338</span>
-                    <p>地址: <span>河北省衡水市饶阳县留楚想吸毒案存388号</span></p>
+                <div class="customer flex-box flex-cCenter" onclick="openDetail(13)">
+                    <img class="logo" src="../image/market/login-bg.jpg" />
+                    <div class="detail">
+                        <h3 class="fs_36 name">王姓名</h3>
+                        <p class="tags fs_32">13029388893</p>
+                        <span class="morePart">日期: 2018-09-39</span>
+                        <span>类型: 黄金会员</span>
+                        <span class="morePart">服务: 张建成</span>
+                        <span>积分: 338</span>
+                        <p>地址: <span>河北省衡水市饶阳县留楚想吸毒案存388号</span></p>
+                    </div>
                 </div>
-            </div>
-            <div class="customer flex-box flex-cCenter">
-                <img class="logo" src="../image/market/login-bg.jpg" />
-                <div class="detail">
-                    <h3 class="fs_36 name">王姓名</h3>
-                    <p class="tags fs_32">13029388893</p>
-                    <span class="morePart">日期: 2018-09-39</span>
-                    <span>类型: 黄金会员</span>
-                    <span class="morePart">服务: 张建成</span>
-                    <span>积分: 338</span>
-                    <p>地址: <span>河北省衡水市饶阳县留楚想吸毒案存388号</span></p>
+                <div class="customer flex-box flex-cCenter" onclick="openDetail(14)">
+                    <img class="logo" src="../image/market/login-bg.jpg" />
+                    <div class="detail">
+                        <h3 class="fs_36 name">王姓名</h3>
+                        <p class="tags fs_32">13029388893</p>
+                        <span class="morePart">日期: 2018-09-39</span>
+                        <span>类型: 黄金会员</span>
+                        <span class="morePart">服务: 张建成</span>
+                        <span>积分: 338</span>
+                        <p>地址: <span>河北省衡水市饶阳县留楚想吸毒案存388号</span></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -160,7 +163,6 @@
 <script src="../script/common.js"></script>
 <script>
     apiready = function(){
-
         // var bMap = api.require('bMap');
         // bMap.open({
         //     rect: {
@@ -180,6 +182,15 @@
         // }, function(ret) {
         //     if (ret.status) {
         //         // alert('地图打开成功');
+        //     }
+        // });
+    }
+    function  openDetail(id) {
+        // api.openWin({
+        //     name: 'customer_detail',
+        //     url: 'customer/customer.html',
+        //     pageParam: {
+        //         id: id
         //     }
         // });
     }

@@ -6,29 +6,355 @@
     <title>详情</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/weui.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/custom.css" />
     <style>
-        
+        html,body{
+            font-size: .28rem;
+        }
+        .chooseType li{
+            font-size: .28rem;
+            flex: 1;
+            color: #333;
+        }
+        .chooseType li.active span.liTitle{
+            color: #3699FF
+        }
+        .weui-cells:before{
+            border: none
+        }
+        .wrapShow{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .weuiBox{
+            z-index: 10;
+            background: #fff;
+        }
+        .wrapNav .weui-cells{
+            left: 0;
+            top: .8rem;
+            right: 0;
+            display: none;
+            background: rgba(0,0,0,.2);
+            bottom: 0;
+            /* background: #fff; */
+        }
+        .wrapNav .weui-cell{
+            background: #fff;
+        }
+        .wrapNav .weui-cells.active{
+            display: block;
+            z-index: 666;
+        }
+        .chooseType li img{
+            width: .2rem;
+            height: .1rem;
+            vertical-align: middle;
+        }
+        .chooseType li img.activeImg,.chooseType li.active img.downImg{
+            display: none;
+        }
+        .chooseType li img.downImg,.chooseType li.active img.activeImg{
+            display: inline-block;
+        }
+        .chooseType{
+            height: .8rem;
+            line-height: .4rem;
+            background: #FCFCFC;text-align: center;
+            border: none;
+            padding: .2rem 0;
+            box-sizing: border-box;
+        }
+
+
+
+        .weui-cells_checkbox .weui-check:checked+.weui-icon-checked:before{
+            color: #3699FF;
+        }
+        .weui-cells:after,.weui-cell:before,.weui-cells:before{
+            border: none;
+        }
+        .weui-cells{
+            font-size: .26rem;
+        }
+        .customerList .weui-cells_checkbox .weui-icon-checked:before{
+            font-size: .32rem;
+        }
+
+        /* 客户列表 */
+        /* .listBox .customer .detail span.tagsName{
+            top: .1rem;
+        }
+        .listBox .customer .detail .tags{
+            top: 0;
+        } */
+        .listBox{
+            margin-top: 0;
+        }
     </style>
 </head>
 <body>
-    <div class="main">
-        <ul>
-            <li>1222222222</li>
-            <li>1222222222</li>
-            <li>1222222222</li>
+    <div class="searchBar">
+        <ul class="chooseType flex-box pos_re" >
+            <li onclick="liChange(0)">
+                <span class="liTitle">客户类型</span>
+                <img src="../../image/icon_down.png" class="downImg" />
+                <img src="../../image/icon_up.png" class="activeImg" />
+            </li>
+            <li onclick="liChange(1)">
+                <span class="liTitle">客户级别</span>
+                <img src="../../image/icon_down.png" class="downImg" />
+                <img src="../../image/icon_up.png" class="activeImg" />
+            </li>
+            <li onclick="liChange(2)">
+                <span class="liTitle">排序</span>
+                <img src="../../image/icon_down.png" class="downImg" />
+                <img src="../../image/icon_up.png" class="activeImg" />
+            </li>
+            <li onclick="liChange(3)">
+                <span class="liTitle">筛选</span>
+                <img src="../../image/icon_down.png" class="downImg" />
+                <img src="../../image/icon_up.png" class="activeImg" />
+            </li>
         </ul>
+        <div class="wrapNav">
+            <div class="weui-cells weui-cells_radio pos_ab list0">
+                <div class="wrapShow"></div>
+                <div class="weuiBox">
+                    <label class="weui-cell weui-check__label text_left" for="x12">
+                        <div class="weui-cell__bd">公司客户(C类)</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="radio1" id="x12"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left" for="x11">
+                        <div class="weui-cell__bd">潜在客户(A类)</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="radio1" id="x11"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left list1" for="x13">
+                        <div class="weui-cell__bd">旅游客户(B类)</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="radio1" id="x13"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left" for="x14">
+                        <div class="weui-cell__bd">品鉴客户(B类)</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="radio1" id="x14"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left" for="x15">
+                        <div class="weui-cell__bd">家访客户(B类)</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="radio1" id="x15"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left" for="x16">
+                        <div class="weui-cell__bd">测评客户(B类)</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="radio1" id="x16"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="weui-cells weui-cells_radio pos_ab list2">
+                <div class="wrapShow"></div>
+                <div class="weuiBox">
+                    <label class="weui-cell weui-check__label text_left" for="vip12">
+                        <div class="weui-cell__bd">普通会员</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="vipType" id="vip12"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left" for="vip11">
+                        <div class="weui-cell__bd">青铜会员</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="vipType" id="vip11"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left" for="vip13">
+                        <div class="weui-cell__bd">白银会员</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="vipType" id="vip13"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left" for="vip14">
+                        <div class="weui-cell__bd">黄金会员</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="vipType" id="vip14"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left" for="vip15">
+                        <div class="weui-cell__bd">铂金会员</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="vipType" id="vip15"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left" for="vip15">
+                        <div class="weui-cell__bd">钻石会员</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="vipType" id="vip15"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="weui-cells weui-cells_radio pos_ab list3">
+                <div class="wrapShow"></div>
+                <div class="weuiBox">
+                    <label class="weui-cell weui-check__label text_left" for="sort12">
+                        <div class="weui-cell__bd">积分最高</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="sortType" id="sort12"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left" for="sort11">
+                        <div class="weui-cell__bd">入会最早</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="sortType" id="sort11"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left" for="sort13">
+                        <div class="weui-cell__bd">入会最晚</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="sortType" id="sort13"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label text_left" for="sort14">
+                        <div class="weui-cell__bd">邀请最多</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="sortType" id="sort14"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="weui-cells weui-cells_checkbox pos_ab">
+                <div class="wrapShow"></div>
+                <div class="weuiBox">
+                    <label class="weui-cell weui-check__label text_left" for="sort14">
+                        <div class="weui-cell__bd">邀请最多</div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="sortType" id="sort14"/>
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label" for="tag11">
+                        <div class="weui-cell__hd">
+                            <input type="checkbox" class="weui-check" name="tagType" id="tag11" checked="checked"/>
+                            <i class="weui-icon-checked"></i>
+                            <span>宣传大使</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main listBox bg">
+        <div class="customerList">
+            <div class="customer flex-box flex-cCenter weui-cells_checkbox" >
+                <label class="weui-cell weui-check__label" for="list1">
+                    <div class="weui-cell__hd">
+                        <input type="checkbox" value="销售会" class="weui-check type" name="listAll" id="list1"/>
+                        <i class="weui-icon-checked"></i>
+                    </div>
+                </label>
+                <img class="logo" src="../../image/market/login-bg.jpg"/>
+                <div class="detail" onclick="openDetail(12)">
+                    <h3 class="fs_36 name">
+                        王姓名<span class="tagsName">宣传大使</span>
+                    </h3>
+                    <p class="tags fs_32">13029388893</p>
+                    <span class="morePart">日期: 2018-09-39</span>
+                    <span>类型: 黄金会员</span>
+                    <span class="morePart">服务: 张建成</span>
+                    <span>积分: 338</span>
+                    <p>地址: 河北省衡水市饶阳</p>
+                </div>
+            </div>
+            <div class="customer flex-box flex-cCenter weui-cells_checkbox">
+                <label class="weui-cell weui-check__label" for="list2">
+                    <div class="weui-cell__hd">
+                        <input type="checkbox" value="销售会" class="weui-check type" name="listAll" id="list2" />
+                        <i class="weui-icon-checked"></i>
+                    </div>
+                </label>
+                <img class="logo" src="../../image/market/login-bg.jpg" />
+                <div class="detail" onclick="openDetail(12)">
+                    <h3 class="fs_36 name">
+                        王姓名<span class="tagsName">宣传大使</span>
+                    </h3>
+                    <p class="tags fs_32">13029388893</p>
+                    <span class="morePart">日期: 2018-09-39</span>
+                    <span>类型: 黄金会员</span>
+                    <span class="morePart">服务: 张建成</span>
+                    <span>积分: 338</span>
+                    <p>地址: 河北省衡水市饶阳</p>
+                </div>
+            </div>
+            <div class="customer flex-box flex-cCenter weui-cells_checkbox">
+                <label class="weui-cell weui-check__label" for="list3">
+                    <div class="weui-cell__hd">
+                        <input type="checkbox" value="销售会" class="weui-check type" name="listAll" id="list3"/>
+                        <i class="weui-icon-checked"></i>
+                    </div>
+                </label>
+                <img class="logo" src="../../image/market/login-bg.jpg" />
+                <div class="detail" onclick="openDetail(12)">
+                    <h3 class="fs_36 name">
+                        王姓名<span class="tagsName">宣传大使</span>
+                    </h3>
+                    <p class="tags fs_32">13029388893</p>
+                    <span class="morePart">日期: 2018-09-39</span>
+                    <span>类型: 黄金会员</span>
+                    <span class="morePart">服务: 张建成</span>
+                    <span>积分: 338</span>
+                    <p>地址: 河北省衡水市饶阳</p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
+<script type="text/javascript" src="../../script/jquery.min.js"></script>
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/common.js"></script>
 <script>
     apiready = function(){
         moduleInit();
         scrolltobottom();
-        initPullRefresh();
     }
+    function liChange(index) {
+        $('.wrapNav .weui-cells').eq(index).toggleClass('active').siblings().removeClass('active');
+    }
+    $('.wrapShow').click(function () {
+        $(this).parent('.weui-cells').removeClass('active');
+    });
+    $('.weuiBox .weui-cell').click(function () {
+        $(this).parents('.weui-cells').removeClass('active');        
+    })
+    $('input[name=listAll]').change(function () {
+        alert(1)
+    })
     //上拉加载更多
     function scrolltobottom() {
         api.addEventListener({
@@ -37,19 +363,17 @@
                 threshold: 50 //距离底部距离
             }
         }, function(ret, err) {
-            // listAjax(true);
+            
         });
     }
-    function initPullRefresh() {
-        api.setRefreshHeaderInfo({
-            loadingImg: 'widget://image/refresh.png',
-            bgColor: '#ccc',
-            textColor: '#fff',
-            textDown: '下拉刷新...',
-            textUp: '松开刷新...'
-        }, function(ret, err) {
-            //在这里从服务器加载数据，加载完成后调用api.refreshHeaderLoadDone()方法恢复组件到默认状态
-
+    // 打开客户详情页面
+    function openDetail(id) {
+        api.openWin({
+            name: 'customer_info',
+            url: 'info_head.html',
+            pageParam: {
+                id: id
+            }
         });
-    };
+    }
 </script>

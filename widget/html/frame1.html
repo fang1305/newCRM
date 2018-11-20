@@ -121,7 +121,7 @@
             <div class="flowList">家访</div>
             <div class="flowList">销售会</div>
         </div>
-        <!-- <div class="listBox">
+        <div class="listBox">
             <div class="titleType">
                 <h3>潜在客户</h3>
                 <a href="##" class="more">查看更多</a>
@@ -142,8 +142,6 @@
                     <img src="../image/market/icon_right.png" />
                 </div>
             </div>
-            
-        </div> -->
         <!-- <div onclick="createData()">创建数据库User</div>
         <div onclick= "setData()">数据库set</div>
         <div onclick = "getData()">数据库</div> -->
@@ -152,7 +150,7 @@
 <script src="../script/api.js"></script>
 <script src="../script/common.js"></script>
 <script src="../script/jquery.min.js"></script>
-<scripts>
+<script>
     var db;
     apiready = function(){
         api.setRefreshHeaderInfo({
@@ -206,7 +204,7 @@
                         </div>\
                     </div>';
                 }
-                // $('.listBox').append(html);
+                $('.listBox').append(html);
             },error: function (err) {
                 console.log($api.jsonToStr(err))                
             }

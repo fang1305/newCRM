@@ -1,7 +1,11 @@
  .listBox {
      margin-top: .2rem;
      font-size: .28rem;
-     padding-left: .3rem;
+     padding-left: .1rem;
+ }
+
+ .listBox label{
+     padding: 0;
  }
 
  .listBox .title {

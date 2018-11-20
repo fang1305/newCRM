@@ -56,38 +56,7 @@
             float: right;
             margin-right: .2rem;
         }
-        .chooseType li{
-            font-size: .28rem;
-            flex: 1;
-        }
-        .weui-cells:before{
-            border: none
-        }
-        .chooseType li .weui-cells{
-            left: 0;
-            right: 0;
-            top: .8rem;
-        }
-        .chooseType li img{
-            background: url(../../image/icon_down.png);
-            width: .2rem;
-            height: .1rem;
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            vertical-align: middle;
-        }
-        .chooseType li img.activeImg,.chooseType li.active img.downImg{
-            display: none;
-        }
-        .chooseType li img.downImg,.chooseType li.active img.activeImg{
-            display: inline-block;
-        }
-        .chooseType{
-            height: .8rem;line-height: .4rem;background: #FCFCFC;text-align: center;
-            border: none;
-            padding: .2rem 0;
-            box-sizing: border-box;
-        }
+        
     </style>
 </head>
 
@@ -103,51 +72,6 @@
             </span>
             <span class="rightBtn" tapmode onclick="addF()"></span>
         </div>
-        <ul class="chooseType flex-box pos_re" >
-            <li>
-                <span>客户类型</span>
-                <img src="../../image/icon_down.png" class="downImg" />
-                <img src="../../image/icon_up.png" class="activeImg" />
-                <div class="weui-cells weui-cells_radio pos_ab">
-                    <label class="weui-cell weui-check__label text_left" for="x11">
-                        <div class="weui-cell__bd">潜在客户</div>
-                        <div class="weui-cell__ft">
-                            <input type="radio" class="weui-check" name="radio1" id="x11"/>
-                            <span class="weui-icon-checked"></span>
-                        </div>
-                    </label>
-                    <label class="weui-cell weui-check__label text_left" for="x12">
-                        <div class="weui-cell__bd">潜在客户</div>
-                        <div class="weui-cell__ft">
-                            <input type="radio" class="weui-check" name="radio1" id="x12"/>
-                            <span class="weui-icon-checked"></span>
-                        </div>
-                    </label>
-                    <label class="weui-cell weui-check__label text_left" for="x13">
-                        <div class="weui-cell__bd">潜在客户</div>
-                        <div class="weui-cell__ft">
-                            <input type="radio" class="weui-check" name="radio1" id="x13"/>
-                            <span class="weui-icon-checked"></span>
-                        </div>
-                    </label>
-                </div>
-            </li>
-            <li>
-                <span>客户级别</span>
-                <img src="../../image/icon_down.png" class="downImg" />
-                <img src="../../image/icon_up.png" class="activeImg" />
-            </li>
-            <li>
-                <span>排序</span>
-                <img src="../../image/icon_down.png" class="downImg" />
-                <img src="../../image/icon_up.png" class="activeImg" />
-            </li>
-            <li>
-                <span>筛选</span>
-                <img src="../../image/icon_down.png" class="downImg" />
-                <img src="../../image/icon_up.png" class="activeImg" />
-            </li>
-        </ul>
     </header>
 
 </body>
@@ -174,94 +98,7 @@
             },
             bounces: false
         });
-        // dakai();
     };
-    // 通讯录添加好友
-    // function addF() {
-    //     api.openWin({
-    //         name: 'txl_addFellow_win',
-    //         url: './txl_addFellow_win.html',
-    //         bounces: false
-    //     });
-    // }
-
-    // function dakai() {
-    //     var data;
-    //     api.ajax({
-    //         url: apiSite + '/contact/levelOne',
-    //         method: 'post',
-    //         headers: apiHeader,
-    //         data: {
-    //             values: {
-    //                 token: $api.getStorage('userToken'),
-    //             }
-    //         }
-    //     }, function (ret, err) {
-
-    //         data = ret.data.list
-    //         for (var i = 0; i < data.length; i++) {
-    //             data[i].employee_id = data[i].user_id;
-    //             data[i].remark = data[i].nickname;
-    //             data[i].position = data[i].current_position;
-    //             data[i].dept_name = data[i].current_company;
-    //         }
-    //         UIListContacts.open({
-    //             rect: {
-    //                 x: 0,
-    //                 y: headerH,
-    //                 h: api.winHeight
-    //             },
-    //             contacts: data,
-    //             fixedOn: api.frameName
-    //         }, function (ret, err) {
-    //             // alert(JSON.stringify(ret)+'----'+JSON.stringify(err))
-    //             if (ret === 'click') {
-    //                 // alert(JSON.stringify(ret));
-    //             }
-    //         });
-
-
-    //     })
-
-
-
-    // }
-    // // 新建表格存二度三度人脉
-    // function secondContactsTable() {
-    //     // 第一张表格
-    //     // 两张表格交替使用
-    //     db.executeSql({
-    //         name: 'db_' + $api.getStorage('userToken'),
-    //         sql: 'CREATE TABLE IF NOT EXISTS db_second_contactst_table(user_id int PRIMARY KEY NOT NULL, nickname varchar(255), remark_nickname varchar(255), head_img_url varchar(255), remark_head_img_url varchar(255), type int, status int)'
-    //         // type 几度人脉
-    //         // status 是否加入微我
-    //     }, function (ret, err) {
-    //         if (ret.status) {
-    //             db.executeSql({
-    //                 name: 'db_' + $api.getStorage('userToken'),
-    //                 sql: 'CREATE TABLE IF NOT EXISTS db_second_contactst_table2(user_id int PRIMARY KEY NOT NULL, nickname varchar(255), remark_nickname varchar(255), head_img_url varchar(255), remark_head_img_url varchar(255), type int, status int)'
-    //                 // type 几度人脉
-    //                 // status 是否加入微我
-    //             }, function (ret, err) {
-    //                 if (ret.status) {
-
-    //                 } else {
-    //                     api.toast({
-    //                         msg: '数据库异常',
-    //                         duration: 2000,
-    //                         location: 'bottom'
-    //                     });
-    //                 }
-    //             });
-    //         } else {
-    //             api.toast({
-    //                 msg: '数据库异常',
-    //                 duration: 2000,
-    //                 location: 'bottom'
-    //             });
-    //         }
-    //     });
-    // }
 </script>
 
 </html>

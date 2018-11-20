@@ -4,6 +4,9 @@
  *{
     box-sizing: border-box;
 }
+.bg{
+    background: #fff;
+}
 .color9{
     color: #999999;
 }
@@ -12,6 +15,12 @@
 }
 .color6{
     color: #666666;
+}
+.colorR{
+    color: #F76360;
+}
+.colorB{
+    color: #3699FF;
 }
 .fs_32{
     font-size: .32rem;
@@ -24,6 +33,12 @@
 }
 .fs_28 {
     font-size: .28rem;
+}
+.mt_20{
+    margin-top: .2rem;
+}
+.text_right{
+    text-align: right;
 }
 .titleType {
     height: .88rem;
